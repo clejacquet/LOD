@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Access/Access.iml" filepath="$PROJECT_DIR$/Access/Access.iml" />
       <module fileurl="file://$PROJECT_DIR$/App/App.iml" filepath="$PROJECT_DIR$/App/App.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LOD.iml" filepath="$PROJECT_DIR$/LOD.iml" />
+      <module fileurl="file://$PROJECT_DIR$/QueryLauncher/QueryLauncher.iml" filepath="$PROJECT_DIR$/QueryLauncher/QueryLauncher.iml" />
     </modules>
   </component>
 </project>

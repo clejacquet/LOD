@@ -1,0 +1,8 @@
+{
+  "Select All": "res/sparql/SelectAll.rq",
+  "Select Predicates": "res/sparql/SelectPredicates.rq",
+  "Select Types": "res/sparql/SelectTypes.rq",
+  "Select Book Titles": "res/sparql/BNBLODB/SelectBookTitles.rq",
+  "Select Book Owners": "res/sparql/BNBLODB/SelectBookOwners.rq",
+  "Select French Recent Books": "res/sparql/BNBLODB/SelectFrenchRecentBook.rq"
+}

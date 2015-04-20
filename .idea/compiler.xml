@@ -22,11 +22,17 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="Access" />
         <module name="App" />
+        <module name="QueryLauncher" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Access" target="1.5" />
       <module name="App" target="1.5" />
+      <module name="LOD" target="1.5" />
+      <module name="LOD2" target="1.5" />
+      <module name="QueryLauncher" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

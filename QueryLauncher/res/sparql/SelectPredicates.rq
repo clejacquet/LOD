@@ -1,0 +1,5 @@
+SELECT DISTINCT ?p
+{
+	[] ?p []
+}
+ORDER BY ?p

@@ -1,0 +1,15 @@
+PREFIX dc: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT DISTINCT ?owner ?owner_name ?book_title
+WHERE {
+    {
+        ?book dc:creator ?owner .
+        ?book dc:title ?book_title .
+        OPTIONAL {
+            ?owner foaf:name ?owner_name
+        }
+    }
+}
+ORDER BY ?owner_name ?book_title

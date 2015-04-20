@@ -1,0 +1,15 @@
+PREFIX dc:      <http://purl.org/dc/terms/>
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX lexvo:   <http://lexvo.org/id/iso639-3/>
+PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>
+PREFIX purl:    <http://purl.org/vocab/bio/0.1/>
+
+SELECT ?book_title ?book_date
+WHERE {
+    [] dc:language lexvo:fra .
+    [] dc:title ?book_title
+    OPTIONAL {
+        [] purl:date ?book_date
+        FILTER (?book_date >= "2010-01-01"^^xsd:date)
+    }
+}
