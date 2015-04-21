@@ -20,20 +20,58 @@ import java.io.IOException;
 
 /**
  * Created by Clement on 06/04/2015.
- *
+ * Main handler of the QueryLauncher app.
  */
 public class App {
-    private final static Logger LOGGER = Logger.getLogger(App.class);
-    private final static String GRAPH_IRI = "http://localhost/BritishLibrary";
-    private final static String DB_URL = "jdbc:virtuoso://localhost:1111";
-    private final static String DB_USERNAME = "dba";
-    private final static String DB_PASSWORD = "dba";
-    private final static String RDF_FILE = "res/rdf/BNBLODB/sample.rdf";
-    private final static String RDF_FILE_LANG = "RDF/XML";
+    /**
+     * Logger
+     */
+    private static final Logger LOGGER = Logger.getLogger(App.class);
 
+    /**
+     * Name of the graph you want to use
+     */
+    private static final String GRAPH_IRI = "http://localhost/BritishLibrary";
+
+    /**
+     * Connexion string of the server you want to access
+     */
+    private static final String DB_URL = "jdbc:virtuoso://localhost:1111";
+
+    /**
+     * Username used to connect to the server
+     */
+    private static final String DB_USERNAME = "dba";
+
+    /**
+     * Password used to connect to the server
+     */
+    private static final String DB_PASSWORD = "dba";
+
+    /**
+     * If the graph you specified doesn't exist yet, it creates it from this rdf file
+     */
+    private static final String RDF_FILE = "res/rdf/BNBLODB/sample.rdf";
+
+    /**
+     * RDF syntax used in RDF_FILE
+     */
+    private static final String RDF_FILE_LANG = "RDF/XML";
+
+    /**
+     * Jena Model bound to a Virtuoso Server's graph
+     */
     private VirtModel model;
+
+    /**
+     * Contain all the queries
+     */
     private QueryStorage queryStorage;
 
+    /**
+     * Launch the app
+     * @throws Exception if the connection failed
+     */
     public void launch() throws Exception {
         VirtGraph graph = new VirtGraph(GRAPH_IRI, DB_URL, DB_USERNAME, DB_PASSWORD);
         this.model = new VirtModel(graph);
@@ -45,7 +83,7 @@ public class App {
 
         controller.setQueryDisplay(queryFrame);
         controller.setQueryStorage(this.queryStorage);
-        controller.setSPARQLEndPoint(sparqlEndPoint);
+        controller.setSparqlEndPoint(sparqlEndPoint);
         queryFrame.setController(controller);
         this.queryStorage.addObserver(queryFrame);
 
@@ -54,6 +92,10 @@ public class App {
         queryFrame.setVisible(true);
     }
 
+    /**
+     * Load the queries from a json file
+     * @throws IOException if it doesn't find the queries file
+     */
     private void loadQueries() throws IOException {
         JSONTokener tokener = new JSONTokener(new FileReader("res/query.json"));
         JSONObject root = new JSONObject(tokener);
@@ -69,6 +111,10 @@ public class App {
         }
     }
 
+    /**
+     * Init the connection
+     * @throws Exception if it doesn't find the rdf file
+     */
     private void initConnection() throws Exception {
         LOGGER.debug("Loading data to \"" + GRAPH_IRI + "\"");
 
@@ -85,7 +131,11 @@ public class App {
         }
     }
 
-    public static void main(String[] args) {
+    /**
+     * Entry point of the application
+     * @param args arguments provided to the application (they are ignored)
+     */
+    public static void main(final String[] args) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             new App().launch();
