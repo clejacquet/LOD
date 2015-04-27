@@ -2,7 +2,7 @@ package jp.kde.lod.jacquet.querylauncher.controller;
 
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.ResultSet;
-import jp.kde.lod.jacquet.access.SPARQLEndPoint;
+import jp.kde.lod.jacquet.access.Access;
 import jp.kde.lod.jacquet.querylauncher.model.QueryStorage;
 import jp.kde.lod.jacquet.querylauncher.view.QueryDisplay;
 import org.apache.log4j.Logger;
@@ -20,7 +20,7 @@ public class DefaultController implements Controller {
     /**
      * SPARQL end point where queries are sent
      */
-    private SPARQLEndPoint sparqlEndPoint;
+    private Access access;
 
     /**
      * Query display where results of queries are sent
@@ -36,8 +36,8 @@ public class DefaultController implements Controller {
      * Give to the controller the SPARQL end point where queries are send to.
      * @param endPoint SPARQL end point
      */
-    public void setSparqlEndPoint(final SPARQLEndPoint endPoint) {
-        this.sparqlEndPoint = endPoint;
+    public void setAccess(final Access endPoint) {
+        this.access = endPoint;
     }
 
     /**
@@ -65,7 +65,7 @@ public class DefaultController implements Controller {
         Query query = this.queryStorage.getQuery(queryName);
 
         LOGGER.debug("Fetching query result ...");
-        ResultSet resultSet = this.sparqlEndPoint.executeSelect(query);
+        ResultSet resultSet = this.access.executeSelect(query);
         LOGGER.debug("Fetch succeed");
 
         this.queryDisplay.displayQueryResults(resultSet);

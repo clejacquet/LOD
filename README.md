@@ -24,13 +24,13 @@ mvn package
 ```
 The .jar should be present at "LOD/%MODULE_DIR%/target"
 
-For example, if you want to compile the App Module :
-* Go to "LOD/App"
+For example, if you want to compile the jp.kde.lod.jacquet.fbexplorer.App Module :
+* Go to "LOD/jp.kde.lod.jacquet.fbexplorer.App"
 * Enter the following instruction :
 ```
 mvn package
 ```
-The .jar should be present at "LOD/App/target"
+The .jar should be present at "LOD/jp.kde.lod.jacquet.fbexplorer.App/target"
 
 ### Configure with IntelliJ
 
@@ -47,7 +47,7 @@ At the top-right of the application, click on the arrow of the build configurati
 
 Select "Edit configuration". The configurations dialog box should be open. Click on '+' to add a configuration and select :
 * If you want to make a build configuration which launch the .jar after compilation : "Application"
-  * Fill the *"Main Class"* field with the name of the main class of the module you want to build (*by convention, I always call them "App"*)
+  * Fill the *"Main Class"* field with the name of the main class of the module you want to build (*by convention, I always call them "jp.kde.lod.jacquet.fbexplorer.App"*)
   * Fill the *"Working Directory"* field with **"$MODULE_DIR$"**
   * In the list of the modules labelled by *"Use classpath of mod ..."* select the module you want to build.
   * In the *"before launch"* part, remove the "Make" goal and add a *"Maven Goal"* with the line command ``compile``

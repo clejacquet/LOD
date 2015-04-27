@@ -1,6 +1,6 @@
 package jp.kde.lod.jacquet.querylauncher.controller;
 
-import jp.kde.lod.jacquet.access.SPARQLEndPoint;
+import jp.kde.lod.jacquet.access.Access;
 import jp.kde.lod.jacquet.querylauncher.model.QueryStorage;
 import jp.kde.lod.jacquet.querylauncher.view.QueryDisplay;
 
@@ -13,7 +13,7 @@ public interface Controller {
      * Give to the controller the SPARQL end point where queries are send to.
      * @param endPoint SPARQL end point
      */
-    void setSparqlEndPoint(SPARQLEndPoint endPoint);
+    void setAccess(Access endPoint);
 
     /**
      * Give to the controller a place where data should be sent in order to be displayed

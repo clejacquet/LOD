@@ -11,6 +11,7 @@
         <module>App</module>
         <module>QueryLauncher</module>
         <module>Access</module>
+        <module>Samples</module>
     </modules>
     <packaging>pom</packaging>
 

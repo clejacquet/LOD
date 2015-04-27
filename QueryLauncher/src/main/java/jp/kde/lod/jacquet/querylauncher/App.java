@@ -2,8 +2,8 @@ package jp.kde.lod.jacquet.querylauncher;
 
 import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.shared.NotFoundException;
-import jp.kde.lod.jacquet.access.SPARQLEndPoint;
-import jp.kde.lod.jacquet.access.VirtSPARQLEndPoint;
+import jp.kde.lod.jacquet.access.Access;
+import jp.kde.lod.jacquet.access.VirtAccess;
 import jp.kde.lod.jacquet.querylauncher.controller.Controller;
 import jp.kde.lod.jacquet.querylauncher.controller.DefaultController;
 import jp.kde.lod.jacquet.querylauncher.model.QueryStorage;
@@ -73,17 +73,16 @@ public class App {
      * @throws Exception if the connection failed
      */
     public void launch() throws Exception {
-        VirtGraph graph = new VirtGraph(GRAPH_IRI, DB_URL, DB_USERNAME, DB_PASSWORD);
-        this.model = new VirtModel(graph);
+        this.model = new VirtModel(new VirtGraph(GRAPH_IRI, DB_URL, DB_USERNAME, DB_PASSWORD));
         this.queryStorage = new QueryStorage();
 
         Controller controller = new DefaultController();
         QueryFrame queryFrame = new QueryFrame();
-        SPARQLEndPoint sparqlEndPoint = new VirtSPARQLEndPoint(graph);
+        Access access = new VirtAccess(model);
 
         controller.setQueryDisplay(queryFrame);
         controller.setQueryStorage(this.queryStorage);
-        controller.setSparqlEndPoint(sparqlEndPoint);
+        controller.setAccess(access);
         queryFrame.setController(controller);
         this.queryStorage.addObserver(queryFrame);
 
