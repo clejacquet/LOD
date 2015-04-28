@@ -20,7 +20,7 @@ import java.io.IOException;
 
 /**
  * Created by Clement on 06/04/2015.
- * Main handler of the QueryLauncher app.
+ * Main handler of the QueryLauncher mediaselector.
  */
 public class App {
     /**
@@ -69,7 +69,7 @@ public class App {
     private QueryStorage queryStorage;
 
     /**
-     * Launch the app
+     * Launch the mediaselector
      * @throws Exception if the connection failed
      */
     public void launch() throws Exception {

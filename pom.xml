@@ -8,7 +8,7 @@
     <artifactId>main</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>App</module>
+        <module>MediaSelector</module>
         <module>QueryLauncher</module>
         <module>Access</module>
         <module>Samples</module>

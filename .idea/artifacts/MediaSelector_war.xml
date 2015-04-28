@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="MediaSelector:war">
+    <output-path>$PROJECT_DIR$/MediaSelector/target</output-path>
+    <root id="archive" name="media-selector.war">
+      <element id="artifact" artifact-name="MediaSelector:war exploded" />
+    </root>
+  </artifact>
+</component>
