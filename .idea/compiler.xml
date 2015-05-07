@@ -24,9 +24,18 @@
         <processorPath useClasspath="true" />
         <module name="Access" />
         <module name="App" />
-        <module name="MediaSelector" />
+        <module name="HibernateTest" />
+        <module name="OntologyTest" />
         <module name="QueryLauncher" />
         <module name="Samples" />
+      </profile>
+      <profile default="false" name="Annotation profile for MediaSelector" enabled="true">
+        <sourceOutputDir name="target\generated-sources\apt" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processor name="org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor" />
+        <processorPath useClasspath="true" />
+        <module name="MediaSelector" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -35,6 +44,8 @@
       <module name="FacebookExplorer" target="1.5" />
       <module name="LOD" target="1.5" />
       <module name="LOD2" target="1.5" />
+      <module name="MediaSelector" target="1.6" />
+      <module name="OntologyTest" target="1.5" />
       <module name="QueryLauncher" target="1.5" />
       <module name="Samples" target="1.5" />
       <module name="Server" target="1.6" />

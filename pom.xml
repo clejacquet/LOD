@@ -12,6 +12,8 @@
         <module>QueryLauncher</module>
         <module>Access</module>
         <module>Samples</module>
+        <module>OntologyTest</module>
+        <module>HibernateTest</module>
     </modules>
     <packaging>pom</packaging>
 

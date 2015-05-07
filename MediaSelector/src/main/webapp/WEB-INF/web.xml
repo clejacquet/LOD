@@ -14,12 +14,14 @@
     </filter-mapping>
 
     <listener>
-        <listener-class>jp.kde.lod.jacquet.mediaselector.web.MediaSelectorContextListener</listener-class>
+        <listener-class>jp.kde.lod.jacquet.mediaselector.ContextListener</listener-class>
     </listener>
 
     <security-constraint>
         <web-resource-collection>
-            <web-resource-name>Media Selector</web-resource-name>
+            <web-resource-name>
+                Media Selector
+            </web-resource-name>
             <url-pattern>/admin/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>

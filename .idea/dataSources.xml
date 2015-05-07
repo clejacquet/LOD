@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="1342350606">
+    <data-source source="LOCAL" name="room-manager" uuid="8d8fdf25-5607-47c0-9a7f-151b8cd55ea0">
+      <driver-ref>h2.embedded</driver-ref>
+      <jdbc-driver>org.h2.Driver</jdbc-driver>
+      <jdbc-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1</jdbc-url>
+      <libraries>
+        <library>
+          <url>file://C:\Users\Clément\.m2\repository\com\h2database\h2\1.4.187\h2-1.4.187.jar</url>
+        </library>
+      </libraries>
+    </data-source>
+  </component>
+</project>
+

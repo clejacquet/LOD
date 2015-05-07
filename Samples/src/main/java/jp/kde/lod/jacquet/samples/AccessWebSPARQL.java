@@ -1,8 +1,11 @@
 package jp.kde.lod.jacquet.samples;
 
+import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.query.*;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.sparql.graph.GraphFactory;
+import jp.kde.lod.jacquet.access.EndPointAccess;
 import jp.kde.lod.jacquet.access.ModelAccess;
 import jp.kde.lod.jacquet.access.Access;
 
@@ -12,14 +15,10 @@ import jp.kde.lod.jacquet.access.Access;
  */
 public class AccessWebSPARQL {
     public static void main(String[] args) {
-        Model model = ModelFactory.createDefaultModel();
-        model.read("http://sws.geonames.org/3017382/contains.rdf");
-        Access access = new ModelAccess(model);
+        Access access = new EndPointAccess("http://localhost:8890/sparql");
 
-        Query query = QueryFactory.read("src/main/resources/query.rq");
+        Query query = QueryFactory.create("select distinct ?Concept where {[] a ?Concept} LIMIT 100");
         ResultSet results = access.executeSelect(query);
         ResultSetFormatter.out(results);
-
-
     }
 }
