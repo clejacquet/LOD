@@ -8,7 +8,7 @@ public class Context {
 
     }
 
-    public static final String ARTIFACT_NAME = "media-selector";
+    public static final String ARTIFACT_NAME = "mediaselector";
 
     public static final String makeCompleteIRI(String path) {
         return "/" + ARTIFACT_NAME + path;

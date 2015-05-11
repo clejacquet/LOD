@@ -5,6 +5,7 @@ import com.google.inject.persist.Transactional;
 import jp.kde.lod.jacquet.mediaselector.persistence.dao.UserDao;
 import jp.kde.lod.jacquet.mediaselector.persistence.domain.User;
 import jp.kde.lod.jacquet.mediaselector.persistence.domain.User_;
+import jp.kde.lod.jacquet.mediaselector.util.EncryptionUtils;
 import org.apache.log4j.Logger;
 
 import javax.inject.Provider;
@@ -24,7 +25,7 @@ public class UserDaoImpl implements UserDao {
     @Transactional
     public List<User> findAll() {
         String query = "from " + User.class.getName();
-        List<User> users = provider.get().createQuery(query).getResultList();
+        List<User> users = provider.get().createQuery(query, User.class).getResultList();
         LOGGER.debug("End of users search");
         return users;
     }
@@ -36,7 +37,7 @@ public class UserDaoImpl implements UserDao {
         query.append(User.class.getName()).append(" as user");
         query.append(" where user.").append(User_.login.getName()).append(" = :login");
 
-        List<User> resultList = this.provider.get().createQuery(query.toString()).setParameter("name", login).getResultList();
+        List<User> resultList = this.provider.get().createQuery(query.toString(), User.class).setParameter("name", login).getResultList();
 
         if (resultList.size() > 0) {
             LOGGER.debug("User with login '" + login + "' found");
@@ -51,14 +52,20 @@ public class UserDaoImpl implements UserDao {
     public User logUser(String login, String password) {
         StringBuilder query = new StringBuilder("from ");
         query.append(User.class.getName()).append(" as user");
-        query.append(" where user.").append(User_.login.getName()).append(" = :login").append(" and");
-        query.append(" user.").append(User_.password.getName()).append(" = :password");
+        query.append(" where user.").append(User_.login.getName()).append(" = :login");
 
-        List<User> resultList = this.provider.get().createQuery(query.toString()).setParameter("login", login).setParameter("password", password).getResultList();
+        User user = this.provider.get().createQuery(query.toString(), User.class).setParameter("login", login).getSingleResult();
 
-        if (resultList.size() > 0) {
+        if (user != null) {
             LOGGER.debug("User  with name '" + login + "' found");
-            return (User) resultList.get(0);
+            String dec_password = EncryptionUtils.decryptPassword(user.getPassword());
+            if (password.equals(dec_password)) {
+                LOGGER.debug("Password valid");
+                return user;
+            } else {
+                LOGGER.debug("Password invalid");
+                return null;
+            }
         }
         LOGGER.debug("No user with name '" + login + "' found");
         return null;

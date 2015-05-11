@@ -11,6 +11,25 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="access" />
+    <orderEntry type="module-library">
+      <library name="Maven: com.virtuoso.provider.jena:virt_jena2:1.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../Access/src/main/resources/virt_jena2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: com.virtuoso.provider.jdbc:virtjdbc4:1.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../Access/src/main/resources/virtjdbc4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
     <orderEntry type="library" name="Maven: org.apache.jena:jena-core:2.13.0" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.6" level="project" />
     <orderEntry type="library" name="Maven: org.apache.jena:jena-iri:1.1.2" level="project" />
@@ -31,23 +50,14 @@
     <orderEntry type="library" name="Maven: org.slf4j:jcl-over-slf4j:1.7.6" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-csv:1.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.3.2" level="project" />
-    <orderEntry type="module-library">
-      <library name="Maven: com.virtuoso.provider.jena:virt_jena2:1.0">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/src/main/resources/virt_jena2.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="Maven: com.virtuoso.provider.jdbc:virtjdbc4:1.0">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/src/main/resources/virtjdbc4.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
+    <orderEntry type="library" name="Maven: com.hp.hpl.jena:tdb:0.8.10" level="project" />
+    <orderEntry type="library" name="Maven: com.hp.hpl.jena:arq:2.8.8" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.woodstox:wstx-asl:3.2.9" level="project" />
+    <orderEntry type="library" name="Maven: stax:stax-api:1.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-core:2.3.1" level="project" />
+    <orderEntry type="library" name="Maven: com.hp.hpl.jena:jena:2.6.4" level="project" />
+    <orderEntry type="library" name="Maven: com.ibm.icu:icu4j:3.4.4" level="project" />
+    <orderEntry type="library" name="Maven: com.hp.hpl.jena:iri:0.8" level="project" />
+    <orderEntry type="library" name="Maven: org.json:json:20140107" level="project" />
   </component>
 </module>

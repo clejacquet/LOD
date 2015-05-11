@@ -9,7 +9,7 @@
 
     <title>${title}</title>
     <#list css_links as link>
-        <link href="/${artifact_name}${link}" rel="stylesheet">
+        <link href="${link}" rel="stylesheet">
     </#list>
 </head>
 
@@ -42,8 +42,8 @@
                         </ul>
                     </li>
                 <#else>
-                    <li><a href="/${artifact_name}/user/register">Register</a></li>
-                    <li><a href="/${artifact_name}/user/connect">Log in</a></li>
+                    <li><a href="/user/register">Register</a></li>
+                    <li><a href="/user/connect">Log in</a></li>
                 </#if>
             </ul>
         </div>
@@ -55,6 +55,6 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="/${artifact_name}/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

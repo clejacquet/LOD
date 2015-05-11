@@ -8,12 +8,11 @@
     <artifactId>main</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>MediaSelector</module>
         <module>QueryLauncher</module>
         <module>Access</module>
         <module>Samples</module>
         <module>OntologyTest</module>
-        <module>HibernateTest</module>
+        <module>MediaSelector</module>
     </modules>
     <packaging>pom</packaging>
 
