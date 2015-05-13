@@ -1,20 +1,28 @@
 package jp.kde.lod.jacquet.access;
 
-import com.hp.hpl.jena.query.Query;
-import com.hp.hpl.jena.query.QueryExecution;
-import com.hp.hpl.jena.query.QueryExecutionFactory;
-import com.hp.hpl.jena.query.ResultSet;
+import com.hp.hpl.jena.graph.Node;
+import com.hp.hpl.jena.query.*;
 import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.update.UpdateAction;
+
+import java.util.Map;
 
 /**
  * Created by Clement on 27/04/2015.
  */
-public class ModelAccess implements Access {
+public class ModelAccess extends BaseAccess implements UpdateAccess {
 
     /**
      * Jena Model used as a SPARQL access
      */
     private Model model;
+
+    /**
+     * Default constructor
+     */
+    public ModelAccess() {
+
+    }
 
     /**
      * Construct a Virtuoso SPARQL Access from a Virtuoso model
@@ -33,39 +41,18 @@ public class ModelAccess implements Access {
     }
 
     /**
-     * return the result of a select query
-     * @param query select query
-     * @return result of the query
+     * run an update query (useful for insert / delete queries)
+     * @param commandText text containing the update query
+     * @param parameters parameters for the update query
      */
-    public ResultSet executeSelect(Query query) {
-        return this.createQueryExecution(query).execSelect();
-    }
+    public void execute(String commandText, Map<String, Node> parameters) {
+        ParameterizedSparqlString sparqlString = new ParameterizedSparqlString(commandText);
 
-    /**
-     * return the constructed graph from a construct query
-     * @param query construct query
-     * @return constructed graph
-     */
-    public Model executeConstruct(Query query) {
-        return this.createQueryExecution(query).execConstruct();
-    }
+        for (Map.Entry<String, Node> param : parameters.entrySet()) {
+            sparqlString.setParam(param.getKey(), param.getValue());
+        }
 
-    /**
-     * return the description graph from a describe query
-     * @param query describe query
-     * @return description graph
-     */
-    public Model executeDescribe(Query query) {
-        return this.createQueryExecution(query).execDescribe();
-    }
-
-    /**
-     * return the answer of an ask query
-     * @param query ask query
-     * @return answer of the ask query
-     */
-    public boolean executeAsk(Query query) {
-        return this.createQueryExecution(query).execAsk();
+        UpdateAction.execute(sparqlString.asUpdate(), this.model);
     }
 
     /**
@@ -73,6 +60,7 @@ public class ModelAccess implements Access {
      * @param query source for the queryExecution which is going to be created
      * @return Query execution
      */
+    @Override
     protected QueryExecution createQueryExecution(Query query) {
         return QueryExecutionFactory.create(query, this.model);
     }

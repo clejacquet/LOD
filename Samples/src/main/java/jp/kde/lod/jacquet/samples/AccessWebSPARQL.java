@@ -6,7 +6,6 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.sparql.graph.GraphFactory;
 import jp.kde.lod.jacquet.access.EndPointAccess;
-import jp.kde.lod.jacquet.access.ModelAccess;
 import jp.kde.lod.jacquet.access.Access;
 
 

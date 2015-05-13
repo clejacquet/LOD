@@ -1,9 +1,6 @@
 package jp.kde.lod.jacquet.mediaselector.web;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Clement on 09/05/2015.
@@ -11,15 +8,29 @@ import java.util.Map;
 public class ViewLayout {
     private String title;
     private List<String> cssLinks;
-    private Map<String, String> headerItems;
+    private List<String> jsLinks;
+    private Map<String, HeaderItem> headerItems;
 
     public static ViewLayout buildBootstrapViewLayout() {
         ViewLayout viewLayout = new ViewLayout();
 
         viewLayout.addCssLink("/css/bootstrap.min.css");
         viewLayout.addCssLink("/css/navbar-fixed-top.css");
-        viewLayout.addCssLink("/css/layout.css");
-        viewLayout.addHeaderItem("/home", "Home");
+        viewLayout.addCssLink("/css/sticky-footer-navbar.css");
+
+        viewLayout.addJsLink("https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js");
+        viewLayout.addJsLink("/js/bootstrap.min.js");
+
+        Map<String, String> mediaSubItems = new LinkedHashMap<String, String>();
+        mediaSubItems.put("Search a media environment", "/media/search");
+        mediaSubItems.put("Create a new one!", "/media/create");
+
+        Map<String, String> dataSubItems = new LinkedHashMap<String, String>();
+        dataSubItems.put("Vocabulary", "/data/voc");
+
+        viewLayout.addHeaderItem("/home", HeaderItem.buildItem("Home"));
+        viewLayout.addHeaderItem("/media", HeaderItem.buildDropdownList("Media", mediaSubItems));
+        viewLayout.addHeaderItem("/data", HeaderItem.buildDropdownList("Data", dataSubItems));
 
         return viewLayout;
     }
@@ -33,7 +44,8 @@ public class ViewLayout {
 
     public ViewLayout() {
         this.cssLinks = new ArrayList<String>();
-        this.headerItems = new HashMap<String, String>();
+        this.jsLinks = new ArrayList<String>();
+        this.headerItems = new LinkedHashMap<String, HeaderItem>();
     }
 
     public void setTitle(String title) {
@@ -44,8 +56,12 @@ public class ViewLayout {
         this.cssLinks.add(cssLink);
     }
 
-    public void addHeaderItem(String uri, String title) {
-        this.headerItems.put(uri, title);
+    public void addJsLink(String jsLink) {
+        this.jsLinks.add(jsLink);
+    }
+
+    public void addHeaderItem(String uri, HeaderItem headerItem) {
+        this.headerItems.put(uri, headerItem);
     }
 
     public String getTitle() {
@@ -56,7 +72,11 @@ public class ViewLayout {
         return this.cssLinks;
     }
 
-    public Map<String, String> getHeaderItems() {
+    public List<String> getJsLinks() {
+        return this.jsLinks;
+    }
+
+    public Map<String, HeaderItem> getHeaderItems() {
         return this.headerItems;
     }
 }

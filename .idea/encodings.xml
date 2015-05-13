@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/MediaSelector/src/main/java/jp/kde/lod/jacquet/mediaselector/Context.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/MediaSelector/src/main/java/jp/kde/lod/jacquet/mediaselector/persistence/PersistenceModule.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/MediaSelector/src/main/java/jp/kde/lod/jacquet/mediaselector/persistence/dao/UserDao.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/MediaSelector/src/main/java/jp/kde/lod/jacquet/mediaselector/persistence/dao/impl/UserDaoImpl.java" charset="UTF-8" />
@@ -21,6 +20,7 @@
     <file url="file://$PROJECT_DIR$/MediaSelector/src/main/resources/templates/user" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/MediaSelector/src/main/webapp/WEB-INF/classes/logging.properties" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/MediaSelector/src/main/webapp/css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MediaSelector/src/main/webapp/css/media/create/create.css" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/MediaSelector/src/main/webapp/fonts" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/MediaSelector/src/main/webapp/js" charset="UTF-8" />
   </component>

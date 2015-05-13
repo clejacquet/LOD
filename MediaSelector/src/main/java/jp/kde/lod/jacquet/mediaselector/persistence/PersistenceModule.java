@@ -1,7 +1,9 @@
 package jp.kde.lod.jacquet.mediaselector.persistence;
 
 import com.google.inject.AbstractModule;
+import jp.kde.lod.jacquet.mediaselector.persistence.dao.MediaDao;
 import jp.kde.lod.jacquet.mediaselector.persistence.dao.UserDao;
+import jp.kde.lod.jacquet.mediaselector.persistence.dao.impl.MediaDaoImpl;
 import jp.kde.lod.jacquet.mediaselector.persistence.dao.impl.UserDaoImpl;
 import org.apache.log4j.Logger;
 
@@ -19,6 +21,7 @@ public class PersistenceModule extends AbstractModule {
         LOGGER.info("CoreModule configuration started...");
         LOGGER.info("   bind UserDao on UserDaoImpl");
         bind(UserDao.class).to(UserDaoImpl.class);
+        bind(MediaDao.class).to(MediaDaoImpl.class);
         LOGGER.info("CoreModule configuration ended.");
     }
 }

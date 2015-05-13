@@ -72,11 +72,16 @@ public class UserService extends Service {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    return null;
                 } else {
                     HttpSession session = request.getSession(true);
                     session.setAttribute("user", user);
+                    try {
+                        response.sendRedirect("/home");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
+                return null;
             }
         }
         return this.connectPageGet(request);
@@ -101,19 +106,16 @@ public class UserService extends Service {
             if (ask.equals("register")) {
                 User user = new User();
                 user.setLogin(login);
-                user.setPassword(EncryptionUtils.encryptPassword(password));
+                user.setPassword(password);
 
                 ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
                 Validator validator = factory.getValidator();
 
                 Set<ConstraintViolation<User>> violations = validator.validate(user);
                 if (violations.size() == 0) {
+                    user.setPassword(EncryptionUtils.encryptPassword(user.getPassword()));
                     userDao.saveUser(user);
-                    try {
-                        response.sendRedirect("/home");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    return this.connectPagePost("connection", login, password, request, response);
                 } else {
                     for (ConstraintViolation<User> violation : violations) {
                         System.err.println(violation);
@@ -129,6 +131,20 @@ public class UserService extends Service {
             }
         } else {
             return super.buildDefaultBootstrapView("Media Selector - Register", "user/register.ftl", super.getAuthenticatedUser(request));
+        }
+        return null;
+    }
+
+    @GET
+    @Path("/logout")
+    @Produces("text/html")
+    public String logoutPage(@Context HttpServletRequest request,
+                             @Context HttpServletResponse response) {
+        request.getSession().invalidate();
+        try {
+            response.sendRedirect("/home");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return null;
     }

@@ -9,6 +9,7 @@ import com.hp.hpl.jena.rdf.model.Model;
  * Useful interface which describe an easy-to-use generic SPARQL access
  */
 public interface Access {
+
     /**
      * return the result of a select query
      * @param query select query

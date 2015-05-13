@@ -4,10 +4,10 @@ import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-import jp.kde.lod.jacquet.mediaselector.Context;
 import jp.kde.lod.jacquet.mediaselector.persistence.domain.User;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -45,8 +45,8 @@ public abstract class Service {
         mapping.put("title", viewLayout.getTitle());
         mapping.put("home", HOME_URI);
         mapping.put("css_links", viewLayout.getCssLinks());
+        mapping.put("js_links", viewLayout.getJsLinks());
         mapping.put("header_items", viewLayout.getHeaderItems());
-        mapping.put("artifact_name", Context.ARTIFACT_NAME);
 
         return mapping;
     }
@@ -94,6 +94,20 @@ public abstract class Service {
             return (User) session.getAttribute("user");
         } else {
             return null;
+        }
+    }
+
+    protected boolean checkSessionWithRedirect(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            return true;
+        } else {
+            try {
+                response.sendRedirect("/user/connect");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return false;
         }
     }
 }

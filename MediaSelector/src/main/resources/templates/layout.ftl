@@ -29,7 +29,18 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <#list header_items?keys as key>
-                    <li><a href="${key}">${header_items[key]}</a></li>
+                    <#if header_items[key].type == "item">
+                <li><a href="${key}">${header_items[key].title}</a></li>
+                    <#elseif header_items[key].type == "dropdown">
+                <li class="dropdown">
+                    <a href="${key}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${header_items[key].title}<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                    <#list header_items[key].subItems?keys as sub_key>
+                        <li><a href="${header_items[key].subItems[sub_key]}">${sub_key}</a></li>
+                    </#list>
+                    </ul>
+                </li>
+                    </#if>
                 </#list>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -37,8 +48,8 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${user.login}<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Profil</a></li>
-                            <li><a href="#">Log Out</a></li>
+                            <li><a href="/user">Profil</a></li>
+                            <li><a href="/user/logout">Log Out</a></li>
                         </ul>
                     </li>
                 <#else>
@@ -50,11 +61,21 @@
     </div>
 </nav>
 
-<div class="container">
+<div class="container" id="content">
 <#include "${content}">
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+<hr style="visibility: hidden;"/>
+
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">Media Selector - 2015 - (Clément JACQUET)</p>
+    </div>
+</footer>
+
+<#list js_links as link>
+<script src="${link}"></script>
+</#list>
+
 </body>
 </html>

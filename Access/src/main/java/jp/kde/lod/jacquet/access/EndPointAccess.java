@@ -10,7 +10,7 @@ import com.hp.hpl.jena.rdf.model.Model;
  * Created by Clement on 27/04/2015.
  * Provide a simple SPARQL access for Web SPARQL endpoints
  */
-public class EndPointAccess implements Access {
+public class EndPointAccess extends BaseAccess {
 
     /**
      *
@@ -25,53 +25,13 @@ public class EndPointAccess implements Access {
         this.endPointURL = endPointURL;
     }
 
-
     /**
-     * return the result of a select query
-     *
-     * @param query select query
-     * @return result of the query
+     * Create a Jena QueryExecution instance
+     * @param query source for the queryExecution which is going to be created
+     * @return Query execution
      */
-    public ResultSet executeSelect(Query query) {
-        return this.createQueryExecution(query).execSelect();
-    }
-
-    /**
-     * return the constructed graph from a construct query
-     *
-     * @param query construct query
-     * @return constructed graph
-     */
-    public Model executeConstruct(Query query) {
-        return this.createQueryExecution(query).execConstruct();
-    }
-
-    /**
-     * return the description graph from a describe query
-     *
-     * @param query describe query
-     * @return description graph
-     */
-    public Model executeDescribe(Query query) {
-        return this.createQueryExecution(query).execDescribe();
-    }
-
-    /**
-     * return the answer of an ask query
-     *
-     * @param query ask query
-     * @return answer of the ask query
-     */
-    public boolean executeAsk(Query query) {
-        return this.createQueryExecution(query).execAsk();
-    }
-
-    /**
-     *
-     * @param query
-     * @return
-     */
-    private QueryExecution createQueryExecution(Query query) {
+    @Override
+    protected QueryExecution createQueryExecution(Query query) {
         return QueryExecutionFactory.sparqlService(this.endPointURL, query);
     }
 }
