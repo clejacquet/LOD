@@ -7,7 +7,7 @@
 
     <context-param>
         <param-name>resteasy.guice.modules</param-name>
-        <param-value>jp.kde.lod.jacquet.mediaselector.web.RestModule</param-value>
+        <param-value>jp.kde.lod.jacquet.mediaselector.controller.RoutingModule</param-value>
     </context-param>
 
     <filter>

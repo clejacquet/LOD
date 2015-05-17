@@ -27,7 +27,7 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6" inherit-compiler-output="false">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -42,25 +42,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="access" />
-    <orderEntry type="module-library">
-      <library name="Maven: com.virtuoso.provider.jena:virt_jena2:1.0">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../Access/src/main/resources/virt_jena2.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="Maven: com.virtuoso.provider.jdbc:virtjdbc4:1.0">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../Access/src/main/resources/virtjdbc4.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
+    <orderEntry type="module" module-name="Access" />
+    <orderEntry type="module" module-name="PageProcessing" />
     <orderEntry type="library" name="Maven: org.freemarker:freemarker:2.3.20" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.resteasy:resteasy-guice:3.0.9.Final" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.resteasy:resteasy-jaxrs:3.0.9.Final" level="project" />
@@ -112,5 +95,23 @@
     <orderEntry type="library" name="Maven: com.h2database:h2:1.3.176" level="project" />
     <orderEntry type="library" name="Maven: org.jasypt:jasypt:1.9.2" level="project" />
     <orderEntry type="library" name="Maven: org.json:json:20141113" level="project" />
+    <orderEntry type="module-library">
+      <library name="Maven: com.virtuoso.provider.jena:virt_jena2:2.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/src/main/resources/lib/virt_jena2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: com.virtuoso.provider.jdbc:virtjdbc4:1.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/src/main/resources/lib/virtjdbc4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

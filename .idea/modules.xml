@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Access/Access.iml" filepath="$PROJECT_DIR$/Access/Access.iml" />
       <module fileurl="file://$PROJECT_DIR$/LOD.iml" filepath="$PROJECT_DIR$/LOD.iml" />
       <module fileurl="file://$PROJECT_DIR$/MediaSelector/MediaSelector.iml" filepath="$PROJECT_DIR$/MediaSelector/MediaSelector.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Access/access.iml" filepath="$PROJECT_DIR$/Access/access.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PageProcessing/PageProcessing.iml" filepath="$PROJECT_DIR$/PageProcessing/PageProcessing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Samples/Samples.iml" filepath="$PROJECT_DIR$/Samples/Samples.iml" />
       <module fileurl="file://$PROJECT_DIR$/OntologyTest/ontology-test.iml" filepath="$PROJECT_DIR$/OntologyTest/ontology-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/QueryLauncher/query-launcher.iml" filepath="$PROJECT_DIR$/QueryLauncher/query-launcher.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Samples/samples.iml" filepath="$PROJECT_DIR$/Samples/samples.iml" />
     </modules>
   </component>
 </project>

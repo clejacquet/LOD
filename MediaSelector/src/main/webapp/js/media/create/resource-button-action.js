@@ -4,7 +4,7 @@
 
 function fillResource(resourceNode) {
     var resource = {};
-    resource.name = $(resourceNode).find(".resource-title").first().val();
+    resource.name = $(resourceNode).find(".resource-name").first().val();
     resource.type = $(resourceNode).find(".resource-type").first().val();
     return resource;
 }
@@ -27,7 +27,7 @@ $(document).ready(function() {
 
         var mediaResource = $("#media-resource");
         media.resource = fillResource(mediaResource);
-        media.title = $("#media-title").val();
+        media.name = $("#media-name").val();
         media.sparql = $("#media-sparql").val();
 
         media.relatedResources = [];

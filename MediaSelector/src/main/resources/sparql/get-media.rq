@@ -1,0 +1,9 @@
+PREFIX ms: <http://mediaselector.com/data/ont/>
+
+SELECT ?media_name ?media_end_point
+WHERE {
+    ?media a ms:media;
+           ms:has_id ?media_id;
+           ms:has_end_point ?media_end_point;
+           ms:has_name ?media_name
+}

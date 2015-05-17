@@ -10,7 +10,7 @@
             <div class="col-md-6">
                 <div class="input-group">
                     <span class="input-group-addon">Title</span>
-                    <input type="text" id="media-title" class="form-control" placeholder="Add a title here">
+                    <input type="text" id="media-name" class="form-control" placeholder="Add a name here">
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
                 <div class="col-md-6">
                     <div class="input-group">
                         <span class="input-group-addon">Name</span>
-                        <input type="text" class="form-control resource-title" placeholder="Add a resource name here">
+                        <input type="text" class="form-control resource-name" placeholder="Add a resource name here">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -67,7 +67,7 @@
                             <div class="col-md-4">
                                 <div class="input-group">
                                     <span class="input-group-addon">Name</span>
-                                    <input type="text" class="form-control resource-title" placeholder="Add a resource name here">
+                                    <input type="text" class="form-control resource-name" placeholder="Add a resource name here">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -98,7 +98,7 @@
                             <div class="col-md-4">
                                 <div class="input-group">
                                     <span class="input-group-addon">Name</span>
-                                    <input type="text" class="form-control resource-title" placeholder="Add a resource name here">
+                                    <input type="text" class="form-control resource-name" placeholder="Add a resource name here">
                                 </div>
                             </div>
                             <div class="col-md-4">

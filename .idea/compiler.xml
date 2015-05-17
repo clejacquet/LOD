@@ -23,8 +23,10 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="access" />
+        <module name="Access" />
         <module name="ontology-test" />
         <module name="query-launcher" />
+        <module name="Samples" />
         <module name="samples" />
       </profile>
       <profile default="false" name="Annotation profile for MediaSelector" enabled="true">
@@ -34,14 +36,24 @@
         <processorPath useClasspath="true" />
         <module name="MediaSelector" />
       </profile>
+      <profile default="false" name="Annotation profile for PageProcessing" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="PageProcessing" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="access" target="1.5" />
+      <module name="Access" target="1.5" />
       <module name="LOD" target="1.5" />
       <module name="main" target="1.5" />
-      <module name="MediaSelector" target="1.6" />
+      <module name="MediaSelector" target="1.8" />
       <module name="ontology-test" target="1.5" />
+      <module name="PageProcessing" target="1.8" />
       <module name="query-launcher" target="1.5" />
+      <module name="Samples" target="1.5" />
       <module name="samples" target="1.5" />
     </bytecodeTargetLevel>
   </component>

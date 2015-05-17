@@ -1,0 +1,10 @@
+PREFIX ms: <http://mediaselector.com/data/ont/>
+
+SELECT ?media_id
+WHERE {
+    ?media a ms:media;
+           ms:has_id ?media_id;
+           ms:has_name ?media_name .
+
+    FILTER regex(?media_name, ?search_text, "i")
+}

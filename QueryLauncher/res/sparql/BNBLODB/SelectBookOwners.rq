@@ -6,7 +6,7 @@ SELECT DISTINCT ?owner ?owner_name ?book_title
 WHERE {
     {
         ?book dc:creator ?owner .
-        ?book dc:title ?book_title .
+        ?book dc:name ?book_title .
         OPTIONAL {
             ?owner foaf:name ?owner_name
         }

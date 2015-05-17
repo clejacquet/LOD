@@ -8,7 +8,10 @@
         </element>
         <element id="directory" name="lib">
           <element id="archive" name="access-1.0-SNAPSHOT.jar">
-            <element id="module-output" name="access" />
+            <element id="module-output" name="Access" />
+          </element>
+          <element id="archive" name="pageprocessing-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="PageProcessing" />
           </element>
           <element id="library" level="project" name="Maven: org.freemarker:freemarker:2.3.20" />
           <element id="library" level="project" name="Maven: org.jboss.resteasy:resteasy-guice:3.0.9.Final" />

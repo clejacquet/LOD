@@ -30,9 +30,9 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>org.freemarker</groupId>
-            <artifactId>freemarker</artifactId>
-            <version>2.3.20</version>
+            <groupId>jp.kde.lod.jacquet</groupId>
+            <artifactId>pageprocessing</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
@@ -119,6 +119,21 @@
             <artifactId>json</artifactId>
             <version>20141113</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.virtuoso.provider.jena</groupId>
+            <artifactId>virt_jena2</artifactId>
+            <version>2.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/lib/virt_jena2.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.virtuoso.provider.jdbc</groupId>
+            <artifactId>virtjdbc4</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/lib/virtjdbc4.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <build>
@@ -135,8 +150,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.0.2</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -171,18 +186,8 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
-                <includes>
-                    <include>**/*.xml</include>
-                    <include>**/*.properties</include>
-                </includes>
-            </resource>
-            <resource>
-                <!-- Performs copy, but does not apply filter for other resources -->
-                <directory>src/main/resources</directory>
-                <filtering>false</filtering>
                 <excludes>
-                    <exclude>**/*.xml</exclude>
-                    <exclude>**/*.properties</exclude>
+                    <exclude>**/*.jar</exclude>
                 </excludes>
             </resource>
         </resources>

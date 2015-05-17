@@ -9,7 +9,7 @@
 
     <title>${title}</title>
     <#list css_links as link>
-        <link href="${link}" rel="stylesheet">
+    ${link}
     </#list>
 </head>
 
@@ -74,7 +74,7 @@
 </footer>
 
 <#list js_links as link>
-<script src="${link}"></script>
+${link}
 </#list>
 
 </body>

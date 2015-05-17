@@ -11,25 +11,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="access" />
-    <orderEntry type="module-library">
-      <library name="Maven: com.virtuoso.provider.jena:virt_jena2:1.0">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../Access/src/main/resources/virt_jena2.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="Maven: com.virtuoso.provider.jdbc:virtjdbc4:1.0">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../Access/src/main/resources/virtjdbc4.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
+    <orderEntry type="module" module-name="Access" />
+    <orderEntry type="library" name="Maven: commons-io:commons-io:2.4" level="project" />
     <orderEntry type="library" name="Maven: org.apache.jena:jena-core:2.13.0" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.6" level="project" />
     <orderEntry type="library" name="Maven: org.apache.jena:jena-iri:1.1.2" level="project" />
@@ -59,5 +42,23 @@
     <orderEntry type="library" name="Maven: com.ibm.icu:icu4j:3.4.4" level="project" />
     <orderEntry type="library" name="Maven: com.hp.hpl.jena:iri:0.8" level="project" />
     <orderEntry type="library" name="Maven: org.json:json:20140107" level="project" />
+    <orderEntry type="module-library">
+      <library name="Maven: com.virtuoso.provider.jena:virt_jena2:2.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/src/main/resources/virt_jena2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: com.virtuoso.provider.jdbc:virtjdbc4:1.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/src/main/resources/virtjdbc4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

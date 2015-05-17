@@ -1,9 +1,16 @@
 package jp.kde.lod.jacquet.access;
 
+import com.hp.hpl.jena.graph.Node;
+import com.hp.hpl.jena.query.ParameterizedSparqlString;
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.Model;
+import org.apache.commons.io.IOUtils;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Map;
 
 /**
  * Created by Clement on 13/05/2015.
@@ -18,8 +25,22 @@ public abstract class BaseAccess implements Access {
     public ResultSet executeSelect(Query query) {
         QueryExecution queryExecution = this.createQueryExecution(query);
         ResultSet resultSet = queryExecution.execSelect();
-        queryExecution.close();
         return resultSet;
+    }
+
+    public ResultSet executeSelect(String queryPath, Map<String, Node> parameters) {
+        ParameterizedSparqlString sparqlString = null;
+        try {
+            sparqlString = new ParameterizedSparqlString(IOUtils.toString(new FileInputStream(queryPath)));
+            for (Map.Entry<String, Node> param : parameters.entrySet()) {
+                sparqlString.setParam(param.getKey(), param.getValue());
+            }
+            QueryExecution queryExecution = this.createQueryExecution(sparqlString.asQuery());
+            return queryExecution.execSelect();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -30,8 +51,22 @@ public abstract class BaseAccess implements Access {
     public Model executeConstruct(Query query) {
         QueryExecution queryExecution = this.createQueryExecution(query);
         Model model = queryExecution.execConstruct();
-        queryExecution.close();
         return model;
+    }
+
+    public Model executeConstruct(String queryPath, Map<String, Node> parameters) {
+        ParameterizedSparqlString sparqlString = null;
+        try {
+            sparqlString = new ParameterizedSparqlString(IOUtils.toString(new FileInputStream(queryPath)));
+            for (Map.Entry<String, Node> param : parameters.entrySet()) {
+                sparqlString.setParam(param.getKey(), param.getValue());
+            }
+            QueryExecution queryExecution = this.createQueryExecution(sparqlString.asQuery());
+            return queryExecution.execConstruct();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -42,8 +77,22 @@ public abstract class BaseAccess implements Access {
     public Model executeDescribe(Query query) {
         QueryExecution queryExecution = this.createQueryExecution(query);
         Model model = queryExecution.execDescribe();
-        queryExecution.close();
         return model;
+    }
+
+    public Model executeDescribe(String queryPath, Map<String, Node> parameters) {
+        ParameterizedSparqlString sparqlString = null;
+        try {
+            sparqlString = new ParameterizedSparqlString(IOUtils.toString(new FileInputStream(queryPath)));
+            for (Map.Entry<String, Node> param : parameters.entrySet()) {
+                sparqlString.setParam(param.getKey(), param.getValue());
+            }
+            QueryExecution queryExecution = this.createQueryExecution(sparqlString.asQuery());
+            return queryExecution.execDescribe();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -51,11 +100,24 @@ public abstract class BaseAccess implements Access {
      * @param query ask query
      * @return answer of the ask query
      */
-    public boolean executeAsk(Query query) {
+    public Boolean executeAsk(Query query) {
         QueryExecution queryExecution = this.createQueryExecution(query);
-        boolean ask = queryExecution.execAsk();
-        queryExecution.close();
-        return ask;
+        return queryExecution.execAsk();
+    }
+
+    public Boolean executeAsk(String queryPath, Map<String, Node> parameters) {
+        ParameterizedSparqlString sparqlString = null;
+        try {
+            sparqlString = new ParameterizedSparqlString(IOUtils.toString(new FileInputStream(queryPath)));
+            for (Map.Entry<String, Node> param : parameters.entrySet()) {
+                sparqlString.setParam(param.getKey(), param.getValue());
+            }
+            QueryExecution queryExecution = this.createQueryExecution(sparqlString.asQuery());
+            return queryExecution.execAsk();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**

@@ -1,0 +1,4 @@
+@prefix ms: <http://mediaselector.com/data/ont/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ms:media_counter ms:has_value "0"^^xsd:long .

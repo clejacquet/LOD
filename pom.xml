@@ -13,6 +13,7 @@
         <module>Samples</module>
         <module>OntologyTest</module>
         <module>MediaSelector</module>
+        <module>PageProcessing</module>
     </modules>
     <packaging>pom</packaging>
 

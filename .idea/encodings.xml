@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/MediaSelector/src/main/java/jp/kde/lod/jacquet/mediaselector/persistence/PersistenceModule.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/MediaSelector/src/main/java/jp/kde/lod/jacquet/mediaselector/persistence/dao/UserDao.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/MediaSelector/src/main/java/jp/kde/lod/jacquet/mediaselector/persistence/dao/impl/UserDaoImpl.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/MediaSelector/src/main/java/jp/kde/lod/jacquet/mediaselector/persistence/dao/impl/package-info.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/MediaSelector/src/main/java/jp/kde/lod/jacquet/mediaselector/persistence/dao/package-info.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/MediaSelector/src/main/java/jp/kde/lod/jacquet/mediaselector/persistence/domain/User.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MediaSelector/src/main/java/jp/kde/lod/jacquet/mediaselector/model/UserDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MediaSelector/src/main/java/jp/kde/lod/jacquet/mediaselector/model/dao/DefaultUserDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MediaSelector/src/main/java/jp/kde/lod/jacquet/mediaselector/model/dao/impl/package-info.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MediaSelector/src/main/java/jp/kde/lod/jacquet/mediaselector/model/dao/package-info.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MediaSelector/src/main/java/jp/kde/lod/jacquet/mediaselector/model/entity/User.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/MediaSelector/src/main/java/jp/kde/lod/jacquet/mediaselector/persistence/domain/package-info.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/MediaSelector/src/main/java/jp/kde/lod/jacquet/mediaselector/persistence/package-info.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/MediaSelector/src/main/java/jp/kde/lod/jacquet/mediaselector/util/EncryptionUtils.java" charset="UTF-8" />

@@ -3,10 +3,11 @@ package jp.kde.lod.jacquet.querylauncher;
 import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.shared.NotFoundException;
 import jp.kde.lod.jacquet.access.Access;
-import jp.kde.lod.jacquet.access.VirtAccess;
+import jp.kde.lod.jacquet.access.EndPointAccess;
 import jp.kde.lod.jacquet.querylauncher.controller.Controller;
 import jp.kde.lod.jacquet.querylauncher.controller.DefaultController;
 import jp.kde.lod.jacquet.querylauncher.model.QueryStorage;
+import jp.kde.lod.jacquet.querylauncher.model.VirtAccess;
 import jp.kde.lod.jacquet.querylauncher.view.QueryFrame;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
@@ -73,12 +74,12 @@ public class App {
      * @throws Exception if the connection failed
      */
     public void launch() throws Exception {
-        this.model = new VirtModel(new VirtGraph(GRAPH_IRI, DB_URL, DB_USERNAME, DB_PASSWORD));
+        //this.model = new VirtModel(new VirtGraph(GRAPH_IRI, DB_URL, DB_USERNAME, DB_PASSWORD));
         this.queryStorage = new QueryStorage();
 
         Controller controller = new DefaultController();
         QueryFrame queryFrame = new QueryFrame();
-        Access access = new VirtAccess(model);
+        Access access = new EndPointAccess("http://data.linkedmdb.org/sparql");
 
         controller.setQueryDisplay(queryFrame);
         controller.setQueryStorage(this.queryStorage);
@@ -87,7 +88,7 @@ public class App {
         this.queryStorage.addObserver(queryFrame);
 
         this.loadQueries();
-        this.initConnection();
+        //this.initConnection();
         queryFrame.setVisible(true);
     }
 

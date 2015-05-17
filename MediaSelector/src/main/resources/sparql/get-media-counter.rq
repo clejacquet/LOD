@@ -1,0 +1,6 @@
+PREFIX ms: <http://mediaselector.com/data/ont/>
+
+SELECT ?media_count_value
+WHERE {
+    ms:media_counter ms:has_value ?media_count_value
+}

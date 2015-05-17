@@ -7,7 +7,7 @@ PREFIX purl:    <http://purl.org/vocab/bio/0.1/>
 SELECT ?book_title ?book_date
 WHERE {
     [] dc:language lexvo:fra .
-    [] dc:title ?book_title
+    [] dc:name ?book_title
     OPTIONAL {
         [] purl:date ?book_date
         FILTER (?book_date >= "2010-01-01"^^xsd:date)
