@@ -28,21 +28,6 @@ public abstract class BaseAccess implements Access {
         return resultSet;
     }
 
-    public ResultSet executeSelect(String queryPath, Map<String, Node> parameters) {
-        ParameterizedSparqlString sparqlString = null;
-        try {
-            sparqlString = new ParameterizedSparqlString(IOUtils.toString(new FileInputStream(queryPath)));
-            for (Map.Entry<String, Node> param : parameters.entrySet()) {
-                sparqlString.setParam(param.getKey(), param.getValue());
-            }
-            QueryExecution queryExecution = this.createQueryExecution(sparqlString.asQuery());
-            return queryExecution.execSelect();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     /**
      * return the constructed graph from a construct query
      * @param query construct query
@@ -52,21 +37,6 @@ public abstract class BaseAccess implements Access {
         QueryExecution queryExecution = this.createQueryExecution(query);
         Model model = queryExecution.execConstruct();
         return model;
-    }
-
-    public Model executeConstruct(String queryPath, Map<String, Node> parameters) {
-        ParameterizedSparqlString sparqlString = null;
-        try {
-            sparqlString = new ParameterizedSparqlString(IOUtils.toString(new FileInputStream(queryPath)));
-            for (Map.Entry<String, Node> param : parameters.entrySet()) {
-                sparqlString.setParam(param.getKey(), param.getValue());
-            }
-            QueryExecution queryExecution = this.createQueryExecution(sparqlString.asQuery());
-            return queryExecution.execConstruct();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     /**
@@ -80,21 +50,6 @@ public abstract class BaseAccess implements Access {
         return model;
     }
 
-    public Model executeDescribe(String queryPath, Map<String, Node> parameters) {
-        ParameterizedSparqlString sparqlString = null;
-        try {
-            sparqlString = new ParameterizedSparqlString(IOUtils.toString(new FileInputStream(queryPath)));
-            for (Map.Entry<String, Node> param : parameters.entrySet()) {
-                sparqlString.setParam(param.getKey(), param.getValue());
-            }
-            QueryExecution queryExecution = this.createQueryExecution(sparqlString.asQuery());
-            return queryExecution.execDescribe();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     /**
      * return the answer of an ask query
      * @param query ask query
@@ -103,21 +58,6 @@ public abstract class BaseAccess implements Access {
     public Boolean executeAsk(Query query) {
         QueryExecution queryExecution = this.createQueryExecution(query);
         return queryExecution.execAsk();
-    }
-
-    public Boolean executeAsk(String queryPath, Map<String, Node> parameters) {
-        ParameterizedSparqlString sparqlString = null;
-        try {
-            sparqlString = new ParameterizedSparqlString(IOUtils.toString(new FileInputStream(queryPath)));
-            for (Map.Entry<String, Node> param : parameters.entrySet()) {
-                sparqlString.setParam(param.getKey(), param.getValue());
-            }
-            QueryExecution queryExecution = this.createQueryExecution(sparqlString.asQuery());
-            return queryExecution.execAsk();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     /**

@@ -1,6 +1,8 @@
 package jp.kde.lod.jacquet.mediaselector.controller;
 
 import jp.kde.lod.jacquet.mediaselector.model.DaoProvider;
+import jp.kde.lod.jacquet.mediaselector.model.QueryStorage;
+import jp.kde.lod.jacquet.mediaselector.model.UpdateStorage;
 import jp.kde.lod.jacquet.pageprocessing.View;
 import org.json.JSONObject;
 
@@ -26,4 +28,6 @@ public interface ServletHandler {
     String getAbsolutePath(String relativePath);
 
     DaoProvider getDaoProvider();
+    QueryStorage getQueryStorage();
+    UpdateStorage getUpdateStorage();
 }

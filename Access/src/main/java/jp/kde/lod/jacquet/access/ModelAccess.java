@@ -4,6 +4,7 @@ import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.query.*;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.update.UpdateAction;
+import com.hp.hpl.jena.update.UpdateRequest;
 
 import java.util.Map;
 
@@ -42,17 +43,9 @@ public class ModelAccess extends BaseAccess implements UpdateAccess {
 
     /**
      * run an update query (useful for insert / delete queries)
-     * @param commandText text containing the update query
-     * @param parameters parameters for the update query
      */
-    public void execute(String commandText, Map<String, Node> parameters) {
-        ParameterizedSparqlString sparqlString = new ParameterizedSparqlString(commandText);
-
-        for (Map.Entry<String, Node> param : parameters.entrySet()) {
-            sparqlString.setParam(param.getKey(), param.getValue());
-        }
-
-        UpdateAction.execute(sparqlString.asUpdate(), this.model);
+    public void execute(UpdateRequest updateRequest) {
+        UpdateAction.execute(updateRequest, this.model);
     }
 
     /**

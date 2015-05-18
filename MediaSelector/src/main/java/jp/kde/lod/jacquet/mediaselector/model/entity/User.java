@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
  * Created by Clement on 06/05/2015.
  */
 @Entity
-@Table(name = "entity")
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue

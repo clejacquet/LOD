@@ -20,16 +20,12 @@ public interface Access {
      */
     ResultSet executeSelect(Query query);
 
-    ResultSet executeSelect(String queryPath, Map<String, Node> parameters);
-
     /**
      * return the constructed graph from a construct query
      * @param query construct query
      * @return constructed graph
      */
     Model executeConstruct(Query query);
-
-    Model executeConstruct(String queryPath, Map<String, Node> parameters);
 
     /**
      * return the description graph from a describe query
@@ -38,15 +34,10 @@ public interface Access {
      */
     Model executeDescribe(Query query);
 
-    Model executeDescribe(String queryPath, Map<String, Node> parameters);
-
-
     /**
      * return the answer of an ask query
      * @param query ask query
      * @return answer of the ask query
      */
     Boolean executeAsk(Query query);
-
-    Boolean executeAsk(String queryPath, Map<String, Node> parameters);
 }

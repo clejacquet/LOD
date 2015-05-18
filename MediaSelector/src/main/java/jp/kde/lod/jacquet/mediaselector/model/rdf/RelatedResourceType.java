@@ -3,6 +3,7 @@ package jp.kde.lod.jacquet.mediaselector.model.rdf;
 import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.graph.NodeFactory;
+import com.hp.hpl.jena.query.ParameterizedSparqlString;
 import com.hp.hpl.jena.rdf.model.Model;
 import jp.kde.lod.jacquet.access.ModelAccess;
 import jp.kde.lod.jacquet.access.UpdateAccess;
@@ -36,18 +37,17 @@ public class RelatedResourceType extends ResourceType {
     }
 
     @Override
-    public void save(Model model, String commandText) {
+    public void save(Model model, ParameterizedSparqlString sparqlString) {
         UpdateAccess access = new ModelAccess(model);
 
-        Map<String, Node> parameters = new HashMap<>();
-        parameters.put("media_id", NodeFactory.createLiteral(Long.toString(super.getMedia().getId()), XSDDatatype.XSDlong));
-        parameters.put("related_resource", NodeFactory.createURI("http://mediaselector.com/media/" + super.getMedia().getId() + "/rel/" + this.id));
-        parameters.put("related_resource_id", NodeFactory.createLiteral(Long.toString(this.id), XSDDatatype.XSDlong));
-        parameters.put("related_resource_type", NodeFactory.createURI(super.getTypeIri()));
-        parameters.put("related_resource_name", NodeFactory.createLiteral(super.getName()));
-        parameters.put("related_resource_relation", NodeFactory.createURI(this.relation));
+        sparqlString.setParam("media_id", NodeFactory.createLiteral(Long.toString(super.getMedia().getId()), XSDDatatype.XSDlong));
+        sparqlString.setParam("related_resource", NodeFactory.createURI("http://mediaselector.com/media/" + super.getMedia().getId() + "/rel/" + this.id));
+        sparqlString.setParam("related_resource_id", NodeFactory.createLiteral(Long.toString(this.id), XSDDatatype.XSDlong));
+        sparqlString.setParam("related_resource_type", NodeFactory.createURI(super.getTypeIri()));
+        sparqlString.setParam("related_resource_name", NodeFactory.createLiteral(super.getName()));
+        sparqlString.setParam("related_resource_relation", NodeFactory.createURI(this.relation));
 
-        access.execute(commandText, parameters);
+        access.execute(sparqlString.asUpdate());
     }
 
     public String getRelation() {

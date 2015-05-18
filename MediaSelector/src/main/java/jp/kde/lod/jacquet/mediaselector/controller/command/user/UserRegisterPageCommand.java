@@ -10,6 +10,6 @@ import jp.kde.lod.jacquet.pageprocessing.View;
 public class UserRegisterPageCommand extends AuthentificatedCommand {
     @Override
     public View process() {
-        return ViewFactory.buildBootstrapView("Media Selector - Register", "entity/register.ftl");
+        return ViewFactory.buildBootstrapView("Media Selector - Register", "user/register.ftl");
     }
 }

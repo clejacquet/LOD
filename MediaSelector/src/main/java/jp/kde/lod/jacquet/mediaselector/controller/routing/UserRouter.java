@@ -15,7 +15,7 @@ import javax.ws.rs.core.Context;
  * Created by Clement on 10/05/2015.
  *
  */
-@Path("/entity")
+@Path("/user")
 public class UserRouter {
 
     @Inject

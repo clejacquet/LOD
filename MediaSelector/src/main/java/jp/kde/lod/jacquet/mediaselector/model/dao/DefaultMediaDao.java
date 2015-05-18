@@ -1,12 +1,8 @@
 package jp.kde.lod.jacquet.mediaselector.model.dao;
 
 import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
-import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.graph.NodeFactory;
-import com.hp.hpl.jena.query.Query;
-import com.hp.hpl.jena.query.QueryFactory;
-import com.hp.hpl.jena.query.QuerySolution;
-import com.hp.hpl.jena.query.ResultSet;
+import com.hp.hpl.jena.query.*;
 import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.Model;
 import jp.kde.lod.jacquet.access.Access;
@@ -18,16 +14,11 @@ import jp.kde.lod.jacquet.mediaselector.model.rdf.Media;
 import jp.kde.lod.jacquet.mediaselector.model.rdf.RelatedResourceType;
 import jp.kde.lod.jacquet.mediaselector.model.rdf.Resource;
 import jp.kde.lod.jacquet.mediaselector.controller.command.BaseServletSubject;
-import org.apache.commons.io.IOUtils;
 import virtuoso.jena.driver.VirtGraph;
 import virtuoso.jena.driver.VirtModel;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Clement on 12/05/2015.
@@ -61,33 +52,22 @@ public class DefaultMediaDao extends BaseServletSubject implements MediaDao {
         Model model = DefaultMediaDao.getMediaModel();
         DefaultMediaDao.InitGraph(model);
 
-        String updateFile = super.getHandler().getAbsolutePath("/WEB-INF/classes/sparqlu/set-media-counter.ru");
-
-        Map<String, Node> parameters = new HashMap<>();
-        parameters.put("media_count_value", NodeFactory.createLiteral(Long.toString(counter), XSDDatatype.XSDlong));
+        ParameterizedSparqlString updateSparqlString = super.getHandler().getUpdateStorage().getSparqlString("setMediaCounter");
+        updateSparqlString.setParam("media_count_value", NodeFactory.createLiteral(Long.toString(counter), XSDDatatype.XSDlong));
 
         UpdateAccess updateAccess = new ModelAccess(model);
-
-        FileInputStream ifstream;
-        try {
-            ifstream = new FileInputStream(updateFile);
-            updateAccess.execute(IOUtils.toString(ifstream), parameters);
-            ifstream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        updateAccess.execute(updateSparqlString.asUpdate());
     }
 
-    private long getRelativeCounter(String queryFile, long mediaId) {
+    private long getRelatedCounter(long mediaId) {
         Model model = DefaultMediaDao.getMediaModel();
         DefaultMediaDao.InitGraph(model);
 
-        Map<String, Node> parameters = new HashMap<>();
-        parameters.put("media_id", NodeFactory.createLiteral(Long.toString(mediaId), XSDDatatype.XSDlong));
+        ParameterizedSparqlString querySparqlString = super.getHandler().getQueryStorage().getSparqlString("getRelatedResourceTypeCounter");
+        querySparqlString.setParam("media_id", NodeFactory.createLiteral(Long.toString(mediaId), XSDDatatype.XSDlong));
 
         Access access = new ModelAccess(model);
-
-        ResultSet resultSet = access.executeSelect(queryFile, parameters);
+        ResultSet resultSet = access.executeSelect(querySparqlString.asQuery());
 
         if (resultSet.hasNext()) {
             QuerySolution solution = resultSet.next();
@@ -98,25 +78,17 @@ public class DefaultMediaDao extends BaseServletSubject implements MediaDao {
         return -1L;
     }
 
-    private void setRelativeCounter(long counter, String updateFile, long mediaId) {
+    private void setRelatedCounter(long counter, long mediaId) {
         Model model = DefaultMediaDao.getMediaModel();
         DefaultMediaDao.InitGraph(model);
 
-        Map<String, Node> parameters = new HashMap<>();
-        parameters.put("relative_resource_type_count_value", NodeFactory.createLiteral(Long.toString(counter), XSDDatatype.XSDlong));
-        parameters.put("relative_resource_type_counter", NodeFactory.createURI("http://mediaselector.com/media/" + mediaId + "/counter"));
-        parameters.put("media_id", NodeFactory.createLiteral(Long.toString(mediaId), XSDDatatype.XSDlong));
+        ParameterizedSparqlString updateSparqlString = super.getHandler().getUpdateStorage().getSparqlString("setRelatedResourceTypeCounter");
+        updateSparqlString.setParam("relative_resource_type_count_value", NodeFactory.createLiteral(Long.toString(counter), XSDDatatype.XSDlong));
+        updateSparqlString.setParam("relative_resource_type_counter", NodeFactory.createURI("http://mediaselector.com/media/" + mediaId + "/counter"));
+        updateSparqlString.setParam("media_id", NodeFactory.createLiteral(Long.toString(mediaId), XSDDatatype.XSDlong));
 
         UpdateAccess updateAccess = new ModelAccess(model);
-
-        FileInputStream ifstream;
-        try {
-            ifstream = new FileInputStream(updateFile);
-            updateAccess.execute(IOUtils.toString(ifstream), parameters);
-            ifstream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        updateAccess.execute(updateSparqlString.asUpdate());
     }
 
     @Override
@@ -124,34 +96,18 @@ public class DefaultMediaDao extends BaseServletSubject implements MediaDao {
         Model model = DefaultMediaDao.getMediaModel();
         DefaultMediaDao.InitGraph(model);
 
-        String mediaFile = super.getHandler().getAbsolutePath("/WEB-INF/classes/sparqlu/insert-media.ru");
-        String mainResourceTypeFile = super.getHandler().getAbsolutePath("/WEB-INF/classes/sparqlu/insert-main-resource-type.ru");
-        String relatedResourceTypeFile = super.getHandler().getAbsolutePath("/WEB-INF/classes/sparqlu/insert-related-resource-type.ru");
-        String relativeResourceQueryFile = super.getHandler().getAbsolutePath("/WEB-INF/classes/sparql/get-relative-resource-type-counter.rq");
-        String relativeResourceUpdateFile = super.getHandler().getAbsolutePath("/WEB-INF/classes/sparqlu/set-relative-resource-type-counter.ru");
+        ParameterizedSparqlString mediaSparqlString = super.getHandler().getUpdateStorage().getSparqlString("insertMedia");
+        ParameterizedSparqlString mainResourceTypeSparqlString = super.getHandler().getUpdateStorage().getSparqlString("insertMainResourceType");
+        ParameterizedSparqlString relatedResourceTypeSparqlString = super.getHandler().getUpdateStorage().getSparqlString("insertRelatedResourceType");
 
-        FileInputStream ifstream;
-        try {
-            ifstream = new FileInputStream(mediaFile);
-            media.save(model, IOUtils.toString(ifstream));
-            ifstream.close();
+        media.save(model, mediaSparqlString);
+        media.getMainResource().save(model, mainResourceTypeSparqlString);
+        for (RelatedResourceType relatedResource : media.getRelatedResource()) {
+            long relativeResourceTypeCounter = getRelatedCounter(relatedResource.getMedia().getId()) + 1L;
+            relatedResource.setId(relativeResourceTypeCounter);
+            setRelatedCounter(relativeResourceTypeCounter, relatedResource.getMedia().getId());
 
-            ifstream = new FileInputStream(mainResourceTypeFile);
-            media.getMainResource().save(model, IOUtils.toString(ifstream));
-            ifstream.close();
-
-            ifstream = new FileInputStream(relatedResourceTypeFile);
-            String relatedResourceTextCommand = IOUtils.toString(ifstream);
-            for (RelatedResourceType relatedResource : media.getRelatedResource()) {
-                long relativeResourceTypeCounter = getRelativeCounter(relativeResourceQueryFile, relatedResource.getMedia().getId()) + 1L;
-                relatedResource.setId(relativeResourceTypeCounter);
-                setRelativeCounter(relativeResourceTypeCounter, relativeResourceUpdateFile, relatedResource.getMedia().getId());
-
-                relatedResource.save(model, relatedResourceTextCommand);
-            }
-            ifstream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+            relatedResource.save(model, relatedResourceTypeSparqlString);
         }
     }
 
@@ -160,18 +116,17 @@ public class DefaultMediaDao extends BaseServletSubject implements MediaDao {
         Model model = DefaultMediaDao.getMediaModel();
         DefaultMediaDao.InitGraph(model);
 
-        String mediaQueryFile = super.getHandler().getAbsolutePath("/WEB-INF/classes/sparql/get-media.rq");
-        String mainResourceQueryFile = super.getHandler().getAbsolutePath("/WEB-INF/classes/sparql/get-main-resource-type.rq");
-        String relatedResourceQueryFile = super.getHandler().getAbsolutePath("/WEB-INF/classes/sparql/get-related-resource-type.rq");
+        ParameterizedSparqlString mediaQuery = super.getHandler().getQueryStorage().getSparqlString("getMedia");
+        ParameterizedSparqlString mainResourceQuery = super.getHandler().getQueryStorage().getSparqlString("getMainResourceType");
+        ParameterizedSparqlString relatedResourceQuery = super.getHandler().getQueryStorage().getSparqlString("getRelatedResourceType");
 
         Media media = new Media();
         media.setId(mediaId);
 
         Access access = new ModelAccess(model);
 
-        Map<String, Node> mediaParameters = new HashMap<>();
-        mediaParameters.put("media_id", NodeFactory.createLiteral(Long.toString(mediaId), XSDDatatype.XSDlong));
-        ResultSet mediaResults = access.executeSelect(mediaQueryFile, mediaParameters);
+        mediaQuery.setParam("media_id", NodeFactory.createLiteral(Long.toString(mediaId), XSDDatatype.XSDlong));
+        ResultSet mediaResults = access.executeSelect(mediaQuery.asQuery());
         if (mediaResults.hasNext()) {
             QuerySolution solution = mediaResults.next();
             media.setName(solution.getLiteral("media_name").getString());
@@ -180,7 +135,8 @@ public class DefaultMediaDao extends BaseServletSubject implements MediaDao {
 
         MainResourceType mainResourceType = new MainResourceType();
         mainResourceType.setMedia(media);
-        ResultSet mainResourceTypeResult = access.executeSelect(mainResourceQueryFile, mediaParameters);
+        mainResourceQuery.setParam("media_id", NodeFactory.createLiteral(Long.toString(mediaId), XSDDatatype.XSDlong));
+        ResultSet mainResourceTypeResult = access.executeSelect(mainResourceQuery.asQuery());
         if (mainResourceTypeResult.hasNext()) {
             QuerySolution solution = mainResourceTypeResult.next();
             mainResourceType.setName(solution.getLiteral("main_resource_name").getString());
@@ -190,7 +146,8 @@ public class DefaultMediaDao extends BaseServletSubject implements MediaDao {
 
         RelatedResourceType relatedResourceType = new RelatedResourceType();
         relatedResourceType.setMedia(media);
-        ResultSet relatedResourceTypeResult = access.executeSelect(relatedResourceQueryFile, mediaParameters);
+        relatedResourceQuery.setParam("media_id", NodeFactory.createLiteral(Long.toString(mediaId), XSDDatatype.XSDlong));
+        ResultSet relatedResourceTypeResult = access.executeSelect(relatedResourceQuery.asQuery());
         if (relatedResourceTypeResult.hasNext()) {
             QuerySolution solution = relatedResourceTypeResult.next();
             relatedResourceType.setName(solution.getLiteral("related_resource_name").getString());
@@ -207,15 +164,14 @@ public class DefaultMediaDao extends BaseServletSubject implements MediaDao {
         Model model = DefaultMediaDao.getMediaModel();
         DefaultMediaDao.InitGraph(model);
 
-        String searchQueryFile = super.getHandler().getAbsolutePath("/WEB-INF/classes/sparql/search-media.rq");
+        ParameterizedSparqlString searchSparqlString = super.getHandler().getQueryStorage().getSparqlString("/sparql/search-media.rq");
 
         List<Media> medias = new ArrayList<>();
         Access access = new ModelAccess(model);
 
-        Map<String, Node> parameters = new HashMap<>();
-        parameters.put("search_text", NodeFactory.createLiteral(searchText));
+        searchSparqlString.setParam("search_text", NodeFactory.createLiteral(searchText));
 
-        ResultSet results = access.executeSelect(searchQueryFile, parameters);
+        ResultSet results = access.executeSelect(searchSparqlString.asQuery());
 
         while (results.hasNext()) {
             QuerySolution solution = results.next();

@@ -14,9 +14,6 @@ public class MediaEnvSearchCommand extends BaseServletSubject implements JSONCom
     public JSONObject process() {
         String searchText = super.getHandler().getRequest().getParameter("search-text");
 
-        String searchQueryRelPath = "/sparql/search-resources.rq";
-        String searchQueryAbsPath = super.getHandler().getAbsolutePath("/WEB-INF/classes" + searchQueryRelPath);
-
         return new JSONObject();
     }
 

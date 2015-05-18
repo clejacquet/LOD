@@ -54,10 +54,10 @@ public class UserRegisterCommand extends UnauthenticatedCommand {
                     }
                 }
             } else {
-                return ViewFactory.buildBootstrapView("Media Selector - Register", "entity/register.ftl");
+                return ViewFactory.buildBootstrapView("Media Selector - Register", "user/register.ftl");
             }
         } else {
-            return ViewFactory.buildBootstrapView("Media Selector - Register", "entity/register.ftl");
+            return ViewFactory.buildBootstrapView("Media Selector - Register", "user/register.ftl");
         }
         return ViewFactory.buildEmptyView();
     }

@@ -10,6 +10,6 @@ import jp.kde.lod.jacquet.pageprocessing.View;
 public class UserPersoPage extends AuthentificatedCommand {
     @Override
     public View process() {
-        return ViewFactory.buildBootstrapView("Media Selector - User", "entity/entity.ftl");
+        return ViewFactory.buildBootstrapView("Media Selector - User", "user/user.ftl");
     }
 }

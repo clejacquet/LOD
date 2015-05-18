@@ -1,5 +1,6 @@
 package jp.kde.lod.jacquet.mediaselector.model.rdf;
 
+import com.hp.hpl.jena.query.ParameterizedSparqlString;
 import com.hp.hpl.jena.rdf.model.Model;
 import org.json.JSONObject;
 
@@ -44,5 +45,5 @@ public abstract class ResourceType {
         this.media = media;
     }
 
-    public abstract void save(Model model, String commandText);
+    public abstract void save(Model model, ParameterizedSparqlString sparqlString);
 }

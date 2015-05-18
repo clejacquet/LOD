@@ -12,7 +12,7 @@ public class UserPageCommand extends AuthentificatedCommand {
 
     @Override
     public View process() {
-        return ViewFactory.buildBootstrapView("Media Selector - User " + this.user, "entity/entity.ftl");
+        return ViewFactory.buildBootstrapView("Media Selector - User " + this.user, "user/user.ftl");
     }
 
     public UserPageCommand setUser(String user) {

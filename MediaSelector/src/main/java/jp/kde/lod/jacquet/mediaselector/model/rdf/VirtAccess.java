@@ -1,10 +1,7 @@
 package jp.kde.lod.jacquet.mediaselector.model.rdf;
 
-import com.hp.hpl.jena.graph.Node;
-import com.hp.hpl.jena.query.ParameterizedSparqlString;
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
-import com.hp.hpl.jena.update.UpdateAction;
 import jp.kde.lod.jacquet.access.ModelAccess;
 import virtuoso.jena.driver.VirtModel;
 import virtuoso.jena.driver.VirtuosoQueryExecutionFactory;
@@ -23,17 +20,6 @@ public class VirtAccess extends ModelAccess {
      */
     public VirtAccess(VirtModel model) {
         super(model);
-    }
-
-    @Override
-    public void execute(String commandText, Map<String, Node> parameters) {
-        ParameterizedSparqlString sparqlString = new ParameterizedSparqlString(commandText);
-
-        for (Map.Entry<String, Node> param : parameters.entrySet()) {
-            sparqlString.setParam(param.getKey(), param.getValue());
-        }
-
-        UpdateAction.execute(sparqlString.asUpdate(), super.getModel());
     }
 
     /**

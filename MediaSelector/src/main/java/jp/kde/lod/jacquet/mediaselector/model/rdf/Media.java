@@ -3,6 +3,7 @@ package jp.kde.lod.jacquet.mediaselector.model.rdf;
 import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.graph.NodeFactory;
+import com.hp.hpl.jena.query.ParameterizedSparqlString;
 import com.hp.hpl.jena.rdf.model.Model;
 import jp.kde.lod.jacquet.access.ModelAccess;
 import jp.kde.lod.jacquet.access.UpdateAccess;
@@ -87,15 +88,14 @@ public class Media {
         this.relatedResource = relatedResource;
     }
 
-    public void save(Model model, String commandText) {
+    public void save(Model model, ParameterizedSparqlString sparqlString) {
         UpdateAccess access = new ModelAccess(model);
 
-        Map<String, Node> parameters = new HashMap<>();
-        parameters.put("media", NodeFactory.createURI("http://mediaselector.com/media/" + this.getId()));
-        parameters.put("media_name", NodeFactory.createLiteral(this.getName()));
-        parameters.put("media_end_point", NodeFactory.createURI(this.getSparqlEndPoint()));
-        parameters.put("media_id", NodeFactory.createLiteral(Long.toString(this.getId()), XSDDatatype.XSDlong));
+        sparqlString.setParam("media", NodeFactory.createURI("http://mediaselector.com/media/" + this.getId()));
+        sparqlString.setParam("media_name", NodeFactory.createLiteral(this.getName()));
+        sparqlString.setParam("media_end_point", NodeFactory.createURI(this.getSparqlEndPoint()));
+        sparqlString.setParam("media_id", NodeFactory.createLiteral(Long.toString(this.getId()), XSDDatatype.XSDlong));
 
-        access.execute(commandText, parameters);
+        access.execute(sparqlString.asUpdate());
     }
 }
