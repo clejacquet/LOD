@@ -9,10 +9,10 @@ import jp.kde.lod.jacquet.access.Access;
 import jp.kde.lod.jacquet.access.ModelAccess;
 import jp.kde.lod.jacquet.access.UpdateAccess;
 import jp.kde.lod.jacquet.mediaselector.model.MediaDao;
-import jp.kde.lod.jacquet.mediaselector.model.rdf.MainResourceType;
-import jp.kde.lod.jacquet.mediaselector.model.rdf.Media;
-import jp.kde.lod.jacquet.mediaselector.model.rdf.RelatedResourceType;
-import jp.kde.lod.jacquet.mediaselector.model.rdf.Resource;
+import jp.kde.lod.jacquet.mediaselector.model.domain.MainResourceType;
+import jp.kde.lod.jacquet.mediaselector.model.domain.Media;
+import jp.kde.lod.jacquet.mediaselector.model.domain.RelatedResourceType;
+import jp.kde.lod.jacquet.mediaselector.model.domain.Resource;
 import jp.kde.lod.jacquet.mediaselector.controller.command.BaseServletSubject;
 import virtuoso.jena.driver.VirtGraph;
 import virtuoso.jena.driver.VirtModel;
@@ -140,7 +140,7 @@ public class DefaultMediaDao extends BaseServletSubject implements MediaDao {
         if (mainResourceTypeResult.hasNext()) {
             QuerySolution solution = mainResourceTypeResult.next();
             mainResourceType.setName(solution.getLiteral("main_resource_name").getString());
-            mainResourceType.setTypeIri(solution.getResource("main_resource_type").getURI());
+            mainResourceType.setTypeUri(solution.getResource("main_resource_type").getURI());
         }
         media.setMainResource(mainResourceType);
 
@@ -151,7 +151,7 @@ public class DefaultMediaDao extends BaseServletSubject implements MediaDao {
         if (relatedResourceTypeResult.hasNext()) {
             QuerySolution solution = relatedResourceTypeResult.next();
             relatedResourceType.setName(solution.getLiteral("related_resource_name").getString());
-            relatedResourceType.setTypeIri(solution.getResource("related_resource_type").getURI());
+            relatedResourceType.setTypeUri(solution.getResource("related_resource_type").getURI());
             relatedResourceType.setRelation(solution.getResource("related_resource_relation").getURI());
         }
         media.getRelatedResource().add(relatedResourceType);
@@ -164,7 +164,7 @@ public class DefaultMediaDao extends BaseServletSubject implements MediaDao {
         Model model = DefaultMediaDao.getMediaModel();
         DefaultMediaDao.InitGraph(model);
 
-        ParameterizedSparqlString searchSparqlString = super.getHandler().getQueryStorage().getSparqlString("/sparql/search-media.rq");
+        ParameterizedSparqlString searchSparqlString = super.getHandler().getQueryStorage().getSparqlString("searchMedia");
 
         List<Media> medias = new ArrayList<>();
         Access access = new ModelAccess(model);

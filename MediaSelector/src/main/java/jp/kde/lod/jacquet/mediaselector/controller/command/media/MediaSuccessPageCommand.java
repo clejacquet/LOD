@@ -1,7 +1,7 @@
 package jp.kde.lod.jacquet.mediaselector.controller.command.media;
 
 import jp.kde.lod.jacquet.mediaselector.model.MediaDao;
-import jp.kde.lod.jacquet.mediaselector.model.rdf.Media;
+import jp.kde.lod.jacquet.mediaselector.model.domain.Media;
 import jp.kde.lod.jacquet.mediaselector.controller.command.AuthentificatedCommand;
 import jp.kde.lod.jacquet.mediaselector.view.ViewFactory;
 import jp.kde.lod.jacquet.pageprocessing.View;

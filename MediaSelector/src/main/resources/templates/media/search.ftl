@@ -20,7 +20,7 @@
         <h3 class="panel-title">Search Result</h3>
     </div>
     <div class="panel-body">
-        <ul class="list-group">
+        <ul class="list-group" id="search-results">
         </ul>
     </div>
 </div>

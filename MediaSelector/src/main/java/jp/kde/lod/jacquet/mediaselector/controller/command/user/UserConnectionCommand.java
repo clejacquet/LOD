@@ -1,7 +1,7 @@
 package jp.kde.lod.jacquet.mediaselector.controller.command.user;
 
 import jp.kde.lod.jacquet.mediaselector.model.UserDao;
-import jp.kde.lod.jacquet.mediaselector.model.entity.User;
+import jp.kde.lod.jacquet.mediaselector.model.domain.User;
 import jp.kde.lod.jacquet.mediaselector.controller.CommandFactory;
 import jp.kde.lod.jacquet.mediaselector.controller.command.UnauthenticatedCommand;
 import jp.kde.lod.jacquet.mediaselector.view.ViewFactory;

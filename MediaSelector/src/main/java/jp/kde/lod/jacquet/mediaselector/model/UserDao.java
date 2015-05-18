@@ -1,6 +1,6 @@
 package jp.kde.lod.jacquet.mediaselector.model;
 
-import jp.kde.lod.jacquet.mediaselector.model.entity.User;
+import jp.kde.lod.jacquet.mediaselector.model.domain.User;
 import jp.kde.lod.jacquet.mediaselector.controller.ServletSubject;
 
 import java.util.List;

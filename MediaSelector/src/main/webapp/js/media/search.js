@@ -3,23 +3,28 @@
  */
 
 function addLine(link, title) {
-    $("<li></li>").addClass('list-group-item').append("<a></a>").attr("href", link).append(title);
+    return $("<li></li>").addClass('list-group-item').append(
+        $("<a></a>").attr("href", link).append(title)
+    );
 }
 
 $(document).ready(function() {
     $("#search-div").hide();
 
     $("#search-button").click(function() {
+        $('#search-results').empty();
+        $("#search-div").hide();
         $.ajax({
             type: 'POST',
             url: '/media/search',
             data: {
-                'search-text': 'MovieLens'
+                'search-text': $('#search-input').val()
             }
         }).done(function(data) {
-
+            $(data.medias).each(function(i, media) {
+                $('#search-results').append(addLine('/media/' + media.id, media.name));
+            });
+            $("#search-div").hide().slideDown(100);
         });
-
-        $("#search-div").hide().slideDown(400);
     });
 });

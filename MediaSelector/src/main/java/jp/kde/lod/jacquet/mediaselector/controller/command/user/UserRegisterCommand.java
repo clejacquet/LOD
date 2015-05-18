@@ -2,7 +2,7 @@ package jp.kde.lod.jacquet.mediaselector.controller.command.user;
 
 import com.google.inject.Inject;
 import jp.kde.lod.jacquet.mediaselector.model.UserDao;
-import jp.kde.lod.jacquet.mediaselector.model.entity.User;
+import jp.kde.lod.jacquet.mediaselector.model.domain.User;
 import jp.kde.lod.jacquet.mediaselector.util.EncryptionUtils;
 import jp.kde.lod.jacquet.mediaselector.controller.CommandFactory;
 import jp.kde.lod.jacquet.mediaselector.controller.command.UnauthenticatedCommand;

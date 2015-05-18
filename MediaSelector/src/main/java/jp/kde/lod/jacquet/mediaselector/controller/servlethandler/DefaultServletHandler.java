@@ -1,6 +1,6 @@
 package jp.kde.lod.jacquet.mediaselector.controller.servlethandler;
 
-import jp.kde.lod.jacquet.mediaselector.model.entity.User;
+import jp.kde.lod.jacquet.mediaselector.model.domain.User;
 import jp.kde.lod.jacquet.mediaselector.controller.HTMLCommand;
 import jp.kde.lod.jacquet.mediaselector.controller.JSONCommand;
 import jp.kde.lod.jacquet.mediaselector.controller.WebContext;

@@ -1,4 +1,8 @@
-package jp.kde.lod.jacquet.mediaselector.model.entity;
+package jp.kde.lod.jacquet.mediaselector.model.domain;
+
+import com.hp.hpl.jena.query.ParameterizedSparqlString;
+import com.hp.hpl.jena.rdf.model.Model;
+import jp.kde.lod.jacquet.mediaselector.model.RDFModel;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -8,7 +12,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements RDFModel {
     @Id
     @GeneratedValue
     private long id;
@@ -47,5 +51,10 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public void save(Model model, ParameterizedSparqlString updateSparqlString) {
+
     }
 }

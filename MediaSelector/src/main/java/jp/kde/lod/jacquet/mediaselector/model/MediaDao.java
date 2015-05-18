@@ -1,7 +1,7 @@
 package jp.kde.lod.jacquet.mediaselector.model;
 
-import jp.kde.lod.jacquet.mediaselector.model.rdf.Media;
-import jp.kde.lod.jacquet.mediaselector.model.rdf.Resource;
+import jp.kde.lod.jacquet.mediaselector.model.domain.Media;
+import jp.kde.lod.jacquet.mediaselector.model.domain.Resource;
 import jp.kde.lod.jacquet.mediaselector.controller.ServletSubject;
 
 import java.util.List;

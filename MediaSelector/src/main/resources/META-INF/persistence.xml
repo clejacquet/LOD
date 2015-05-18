@@ -8,7 +8,7 @@
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
         <!-- Need to add all classes due to JPA persistence file scope problem -->
-        <class>jp.kde.lod.jacquet.mediaselector.model.entity.User</class>
+        <class>jp.kde.lod.jacquet.mediaselector.model.domain.User</class>
 
         <properties>
 <!--            <property name="hibernate.hbm2ddl.auto" value="create-drop"/> -->

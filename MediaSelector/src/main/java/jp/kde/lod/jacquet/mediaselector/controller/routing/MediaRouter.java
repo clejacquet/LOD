@@ -84,7 +84,7 @@ public class MediaRouter {
                                 @Context HttpServletRequest request,
                                 @Context HttpServletResponse response) {
         return WebContext.getServletHandler(context, request, response)
-                .processJSON(CommandFactory.buildJSONCommand(MediaSearchCommand.class))
+                .processJSON(CommandFactory.buildJSONCommand(MediaEnvSearchCommand.class))
                 .toString();
     }
 

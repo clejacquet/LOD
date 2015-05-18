@@ -1,7 +1,7 @@
 package jp.kde.lod.jacquet.mediaselector.controller.command.media;
 
 import jp.kde.lod.jacquet.mediaselector.model.MediaDao;
-import jp.kde.lod.jacquet.mediaselector.model.rdf.Media;
+import jp.kde.lod.jacquet.mediaselector.model.domain.Media;
 import jp.kde.lod.jacquet.mediaselector.controller.JSONCommand;
 import jp.kde.lod.jacquet.mediaselector.controller.command.BaseServletSubject;
 import org.json.JSONObject;
@@ -23,7 +23,7 @@ public class MediaValidationCommand extends BaseServletSubject implements JSONCo
 
             JSONObject mediaJson = new JSONObject(new JSONTokener(mediaJsonStr));
             Media media = new Media();
-            media.loadJson(mediaJson);
+            media.loadJSON(mediaJson);
 
             long counter = mediaDao.getMediaCounter() + 1L;
             mediaDao.setMediaCounter(counter);

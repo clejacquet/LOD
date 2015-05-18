@@ -1,12 +1,10 @@
-package jp.kde.lod.jacquet.mediaselector.model.rdf;
+package jp.kde.lod.jacquet.mediaselector.model.domain;
 
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
 import jp.kde.lod.jacquet.access.ModelAccess;
 import virtuoso.jena.driver.VirtModel;
 import virtuoso.jena.driver.VirtuosoQueryExecutionFactory;
-
-import java.util.Map;
 
 /**
  * Created by Clement on 16/04/2015.
