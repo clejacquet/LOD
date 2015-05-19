@@ -6,6 +6,7 @@ function fillResource(resourceNode) {
     var resource = {};
     resource.name = $(resourceNode).find(".resource-name").first().val();
     resource.type = $(resourceNode).find(".resource-type").first().val();
+    resource.titleProperty = $(resourceNode).find(".resource-title-property").first().val();
     return resource;
 }
 

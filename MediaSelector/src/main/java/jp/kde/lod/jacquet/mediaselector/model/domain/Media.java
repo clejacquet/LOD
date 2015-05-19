@@ -24,6 +24,7 @@ public class Media implements RDFModel, JSONModel {
     private String sparqlEndPoint;
     private MainResourceType mainResource;
     private Collection<RelatedResourceType> relatedResource;
+    private User author;
 
     public Media() {
         this.relatedResource = new ArrayList<>();
@@ -69,6 +70,15 @@ public class Media implements RDFModel, JSONModel {
         this.relatedResource = relatedResource;
     }
 
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
+
     @Override
     public void save(Model model, ParameterizedSparqlString updateSparqlString) {
         UpdateAccess access = new ModelAccess(model);
@@ -77,6 +87,7 @@ public class Media implements RDFModel, JSONModel {
         updateSparqlString.setParam("media_name", NodeFactory.createLiteral(this.getName()));
         updateSparqlString.setParam("media_end_point", NodeFactory.createURI(this.getSparqlEndPoint()));
         updateSparqlString.setParam("media_id", NodeFactory.createLiteral(Long.toString(this.getId()), XSDDatatype.XSDlong));
+        updateSparqlString.setParam("author_id", NodeFactory.createLiteral(Long.toString(this.author.getId()), XSDDatatype.XSDlong));
 
         access.execute(updateSparqlString.asUpdate());
     }
@@ -107,6 +118,7 @@ public class Media implements RDFModel, JSONModel {
         mediaJson.put("name", this.name);
         mediaJson.put("sparql", this.sparqlEndPoint);
         mediaJson.put("resource", this.mainResource.toJSON());
+        mediaJson.put("author", this.author.getId());
 
         JSONArray relatedResourcesArray = new JSONArray();
         for (RelatedResourceType relatedResourceType : this.relatedResource) {

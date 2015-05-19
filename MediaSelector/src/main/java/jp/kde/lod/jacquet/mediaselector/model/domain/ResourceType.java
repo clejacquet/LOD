@@ -10,6 +10,7 @@ import org.json.JSONObject;
 public abstract class ResourceType implements RDFModel, JSONModel {
     private String name;
     private String typeUri;
+    private String titlePropertyUri;
     private Media media;
 
     public ResourceType() {
@@ -36,6 +37,14 @@ public abstract class ResourceType implements RDFModel, JSONModel {
         this.typeUri = typeUri;
     }
 
+    public String getTitlePropertyUri() {
+        return titlePropertyUri;
+    }
+
+    public void setTitlePropertyUri(String titlePropertyUri) {
+        this.titlePropertyUri = titlePropertyUri;
+    }
+
     public Media getMedia() {
         return media;
     }
@@ -48,6 +57,7 @@ public abstract class ResourceType implements RDFModel, JSONModel {
     public void loadJSON(JSONObject jsonObject) {
         this.name = jsonObject.getString("name");
         this.typeUri = jsonObject.getString("type");
+        this.titlePropertyUri = jsonObject.getString("titleProperty");
     }
 
     @Override
@@ -55,6 +65,7 @@ public abstract class ResourceType implements RDFModel, JSONModel {
         JSONObject resourceJson = new JSONObject();
         resourceJson.put("name", this.name);
         resourceJson.put("type", this.typeUri);
+        resourceJson.put("titleProperty", this.titlePropertyUri);
         return resourceJson;
     }
 }

@@ -1,8 +1,9 @@
 package jp.kde.lod.jacquet.mediaselector.model;
 
+import jp.kde.lod.jacquet.mediaselector.model.domain.MainResource;
 import jp.kde.lod.jacquet.mediaselector.model.domain.Media;
-import jp.kde.lod.jacquet.mediaselector.model.domain.Resource;
 import jp.kde.lod.jacquet.mediaselector.controller.ServletSubject;
+import jp.kde.lod.jacquet.mediaselector.model.domain.User;
 
 import java.util.List;
 
@@ -17,5 +18,7 @@ public interface MediaDao extends ServletSubject {
     Media getMedia(long mediaId);
 
     List<Media> searchMedia(String searchText);
-    List<Resource> searchResource(String searchText, long mediaId);
+    List<MainResource> searchResource(String searchText, String language, long mediaId);
+
+    void saveUser(User user);
 }

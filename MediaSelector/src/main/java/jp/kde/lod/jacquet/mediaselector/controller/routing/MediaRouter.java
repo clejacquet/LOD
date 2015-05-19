@@ -84,7 +84,7 @@ public class MediaRouter {
                                 @Context HttpServletRequest request,
                                 @Context HttpServletResponse response) {
         return WebContext.getServletHandler(context, request, response)
-                .processJSON(CommandFactory.buildJSONCommand(MediaEnvSearchCommand.class))
+                .processJSON(CommandFactory.buildJSONCommand(MediaSearchCommand.class))
                 .toString();
     }
 
@@ -123,7 +123,7 @@ public class MediaRouter {
                                      @PathParam("media-env") String media) {
         return WebContext.getServletHandler(context, request, response)
                 .processJSON(CommandFactory.buildJSONCommand(MediaEnvSearchCommand.class)
-                        .setMedia(media))
+                        .setMediaId(media))
                 .toString();
     }
 

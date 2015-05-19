@@ -1,7 +1,5 @@
 package jp.kde.lod.jacquet.mediaselector.controller.command.user;
 
-import com.google.inject.Inject;
-import jp.kde.lod.jacquet.mediaselector.model.UserDao;
 import jp.kde.lod.jacquet.mediaselector.model.domain.User;
 import jp.kde.lod.jacquet.mediaselector.util.EncryptionUtils;
 import jp.kde.lod.jacquet.mediaselector.controller.CommandFactory;
@@ -20,9 +18,6 @@ import java.util.Set;
  * Created by Clement on 17/05/2015.
  */
 public class UserRegisterCommand extends UnauthenticatedCommand {
-    @Inject
-    private UserDao userDao;
-
     @Override
     public View process() {
         String ask = super.getHandler().getRequest().getParameter("ask");
@@ -41,7 +36,7 @@ public class UserRegisterCommand extends UnauthenticatedCommand {
                 Set<ConstraintViolation<User>> violations = validator.validate(user);
                 if (violations.size() == 0) {
                     user.setPassword(EncryptionUtils.encryptPassword(user.getPassword()));
-                    userDao.saveUser(user);
+                    super.getHandler().getDaoProvider().getUserDao().saveUser(user);
                     return super.getHandler().processHTML(CommandFactory.buildHTMLCommand(UserConnectionCommand.class));
                 } else {
                     for (ConstraintViolation<User> violation : violations) {

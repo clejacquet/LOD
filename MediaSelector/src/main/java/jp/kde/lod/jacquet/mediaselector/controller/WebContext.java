@@ -65,6 +65,8 @@ public final class WebContext {
         queryStorage.add("getRelatedResourceType", handler.getAbsolutePath("/sparql/get-related-resource-type.rq"));
         queryStorage.add("getRelatedResourceTypeCounter", handler.getAbsolutePath("/sparql/get-related-resource-type-counter.rq"));
         queryStorage.add("searchMedia", handler.getAbsolutePath("/sparql/search-media.rq"));
+        queryStorage.add("searchResources", handler.getAbsolutePath("/sparql/external/search-resources.rq"));
+        queryStorage.add("searchResourcesLang", handler.getAbsolutePath("/sparql/external/search-resources-lang.rq"));
 
         UpdateStorage updateStorage = handler.getUpdateStorage();
         updateStorage.add("deleteMainResource", handler.getAbsolutePath("/sparqlu/delete-main-resource.ru"));
@@ -79,6 +81,7 @@ public final class WebContext {
         updateStorage.add("insertRelatedResourceType", handler.getAbsolutePath("/sparqlu/insert-related-resource-type.ru"));
         updateStorage.add("setMediaCounter", handler.getAbsolutePath("/sparqlu/set-media-counter.ru"));
         updateStorage.add("setRelatedResourceTypeCounter", handler.getAbsolutePath("/sparqlu/set-related-resource-type-counter.ru"));
+        updateStorage.add("saveUser", handler.getAbsolutePath("/sparqlu/save-user.ru"));
 
         return handler;
     }

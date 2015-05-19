@@ -7,6 +7,7 @@ DELETE {
                           ms:has_id ?related_resource_id;
                           ms:has_name ?old_related_resource_name;
                           ms:has_type ?old_related_resource_type;
+                          ms:has_title_property ?old_title_property;
                           ms:has_relation ?old_related_resource_relation
 } WHERE {
     ?media a ms:media;
@@ -17,6 +18,7 @@ DELETE {
     ?old_related_resource ms:has_id ?related_resource_id;
                           ms:has_name ?old_related_resource_name;
                           ms:has_type ?old_related_resource_type;
+                          ms:has_title_property ?old_title_property;
                           ms:has_relation ?old_related_resource_relation
 };
 
@@ -27,6 +29,7 @@ INSERT {
                       ms:has_id ?related_resource_id;
                       ms:has_name ?related_resource_name;
                       ms:has_type ?related_resource_type;
+                      ms:has_title_property ?title_property;
                       ms:has_relation ?related_resource_relation
 } WHERE {
     ?media a ms:media;

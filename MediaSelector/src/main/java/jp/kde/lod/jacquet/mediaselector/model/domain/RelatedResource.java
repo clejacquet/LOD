@@ -12,14 +12,4 @@ public class RelatedResource extends Resource {
     public void save(Model model, ParameterizedSparqlString updateSparqlString) {
 
     }
-
-    @Override
-    public void loadJSON(JSONObject jsonObject) {
-
-    }
-
-    @Override
-    public JSONObject toJSON() {
-        return null;
-    }
 }

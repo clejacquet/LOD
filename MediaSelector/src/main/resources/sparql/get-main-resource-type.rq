@@ -1,6 +1,6 @@
 PREFIX ms: <http://mediaselector.com/data/ont/>
 
-SELECT ?main_resource_name ?main_resource_type
+SELECT ?main_resource_name ?main_resource_type ?title_property
 WHERE {
     ?media a ms:media;
            ms:has_id ?media_id;
@@ -8,5 +8,6 @@ WHERE {
 
     ?main_resource a ms:main_resource;
                    ms:has_type ?main_resource_type;
-                   ms:has_name ?main_resource_name
+                   ms:has_name ?main_resource_name;
+                   ms:has_title_property ?title_property
 }

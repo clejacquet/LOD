@@ -11,6 +11,7 @@ import java.util.List;
 public interface UserDao extends ServletSubject {
     List<User> findAll();
     User findByLogin(String login);
+    User getUser(long id);
     User logUser(String login, String password);
     void saveUser(User user);
     void removeUser(User user);

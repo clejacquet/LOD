@@ -49,6 +49,7 @@ public class RelatedResourceType extends ResourceType {
         updateSparqlString.setParam("related_resource_type", NodeFactory.createURI(super.getTypeUri()));
         updateSparqlString.setParam("related_resource_name", NodeFactory.createLiteral(super.getName()));
         updateSparqlString.setParam("related_resource_relation", NodeFactory.createURI(this.relation));
+        updateSparqlString.setParam("title_property", NodeFactory.createURI(super.getTitlePropertyUri()));
 
         access.execute(updateSparqlString.asUpdate());
     }

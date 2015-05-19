@@ -11,7 +11,7 @@
     </div>
     <div class="col-md-1">
         <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default" id="search-button">Search !</button>
+            <button type="button" class="btn btn-default" id="search-button">Search!</button>
         </div>
     </div>
 </div>

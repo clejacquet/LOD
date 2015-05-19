@@ -22,7 +22,7 @@ public class MediaCreatePageCommand extends AuthentificatedCommand {
             return view;
         } else {
             try {
-                super.getHandler().getResponse().sendRedirect("/entity/connect");
+                super.getHandler().getResponse().sendRedirect("/user/connect");
             } catch (IOException e) {
                 e.printStackTrace();
             }

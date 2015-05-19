@@ -3,7 +3,7 @@ package jp.kde.lod.jacquet.mediaselector.controller.command.media;
 import jp.kde.lod.jacquet.mediaselector.controller.JSONCommand;
 import jp.kde.lod.jacquet.mediaselector.controller.command.BaseServletSubject;
 import jp.kde.lod.jacquet.mediaselector.model.MediaDao;
-import jp.kde.lod.jacquet.mediaselector.model.domain.Media;
+import jp.kde.lod.jacquet.mediaselector.model.domain.MainResource;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -13,28 +13,29 @@ import java.util.List;
  * Created by Clement on 17/05/2015.
  */
 public class MediaEnvSearchCommand extends BaseServletSubject implements JSONCommand {
-    private String media;
+    private String mediaId;
 
     @Override
     public JSONObject process() {
         String searchText = super.getHandler().getRequest().getParameter("search-text");
+        String language = super.getHandler().getRequest().getParameter("language");
 
         MediaDao mediaDao = super.getHandler().getDaoProvider().getMediaDao();
-        List<Media> medias = mediaDao.searchMedia(searchText);
+        List<MainResource> mainResources = mediaDao.searchResource(searchText, language, Long.parseLong(this.mediaId));
 
-        JSONObject mediasJson = new JSONObject();
+        JSONObject resourcesJson = new JSONObject();
 
-        JSONArray mediasJsonArray = new JSONArray();
-        for (Media media : medias) {
-            mediasJsonArray.put(media.toJSON());
+        JSONArray resourcesJsonArray = new JSONArray();
+        for (MainResource mainResource : mainResources) {
+            resourcesJsonArray.put(mainResource.toJSON());
         }
-        mediasJson.put("medias", mediasJsonArray);
+        resourcesJson.put("resources", resourcesJsonArray);
 
-        return mediasJson;
+        return resourcesJson;
     }
 
-    public MediaEnvSearchCommand setMedia(String media) {
-        this.media = media;
+    public MediaEnvSearchCommand setMediaId(String mediaId) {
+        this.mediaId = mediaId;
         return this;
     }
 }

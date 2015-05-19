@@ -15,16 +15,19 @@ import java.util.List;
 public class MediaSearchCommand extends BaseServletSubject implements JSONCommand {
     @Override
     public JSONObject process() {
-        MediaDao mediaDao = super.getHandler().getDaoProvider().getMediaDao();
-
         String searchText = super.getHandler().getRequest().getParameter("search-text");
 
+        MediaDao mediaDao = super.getHandler().getDaoProvider().getMediaDao();
         List<Media> medias = mediaDao.searchMedia(searchText);
-        JSONObject object = new JSONObject();
-        JSONArray mediaArray = new JSONArray();
 
-        object.append("medias", mediaArray);
+        JSONObject mediasJson = new JSONObject();
 
-        return new JSONObject();
+        JSONArray mediasJsonArray = new JSONArray();
+        for (Media media : medias) {
+            mediasJsonArray.put(media.toJSON());
+        }
+        mediasJson.put("medias", mediasJsonArray);
+
+        return mediasJson;
     }
 }

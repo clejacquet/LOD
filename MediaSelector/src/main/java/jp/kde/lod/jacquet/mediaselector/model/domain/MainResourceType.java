@@ -29,6 +29,7 @@ public class MainResourceType extends ResourceType {
         updateSparqlString.setParam("main_resource", NodeFactory.createURI("http://mediaselector.com/media/" + super.getMedia().getId() + "/res"));
         updateSparqlString.setParam("main_resource_type", NodeFactory.createURI(super.getTypeUri()));
         updateSparqlString.setParam("main_resource_name", NodeFactory.createLiteral(super.getName()));
+        updateSparqlString.setParam("title_property", NodeFactory.createURI(super.getTitlePropertyUri()));
 
         access.execute(updateSparqlString.asUpdate());
     }

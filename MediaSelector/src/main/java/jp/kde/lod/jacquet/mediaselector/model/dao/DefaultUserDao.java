@@ -35,10 +35,10 @@ public class DefaultUserDao extends BaseServletSubject implements UserDao {
     @Transactional
     public User findByLogin(final String login) {
         StringBuilder query = new StringBuilder("from ");
-        query.append(User.class.getName()).append(" as entity");
-        query.append(" where entity.").append(User_.login.getName()).append(" = :login");
+        query.append(User.class.getName()).append(" as user");
+        query.append(" where user.").append(User_.login.getName()).append(" = :login");
 
-        List<User> resultList = this.provider.get().createQuery(query.toString(), User.class).setParameter("name", login).getResultList();
+        List<User> resultList = this.provider.get().createQuery(query.toString(), User.class).setParameter("login", login).getResultList();
 
         if (resultList.size() > 0) {
             LOGGER.debug("User with login '" + login + "' found");
@@ -49,11 +49,27 @@ public class DefaultUserDao extends BaseServletSubject implements UserDao {
     }
 
     @Override
+    public User getUser(long id) {
+        StringBuilder query = new StringBuilder("from ");
+        query.append(User.class.getName()).append(" as user");
+        query.append(" where user.").append(User_.id.getName()).append(" = :id");
+
+        List<User> resultList = this.provider.get().createQuery(query.toString(), User.class).setParameter("id", id).getResultList();
+
+        if (resultList.size() > 0) {
+            LOGGER.debug("User with id '" + id + "' found");
+            return (User) resultList.get(0);
+        }
+        LOGGER.debug("No entity with id '" + id + "' found");
+        return null;
+    }
+
+    @Override
     @Transactional
     public User logUser(String login, String password) {
         StringBuilder query = new StringBuilder("from ");
-        query.append(User.class.getName()).append(" as entity");
-        query.append(" where entity.").append(User_.login.getName()).append(" = :login");
+        query.append(User.class.getName()).append(" as user");
+        query.append(" where user.").append(User_.login.getName()).append(" = :login");
 
         try {
             User user = this.provider.get().createQuery(query.toString(), User.class).setParameter("login", login).getSingleResult();
@@ -75,8 +91,13 @@ public class DefaultUserDao extends BaseServletSubject implements UserDao {
     @Override
     @Transactional
     public void saveUser(User user) {
-        this.provider.get().persist(user);
-        LOGGER.debug("User '"+ user.getLogin() + "' saved");
+        try {
+            this.provider.get().persist(user);
+            super.getHandler().getDaoProvider().getMediaDao().saveUser(user);
+            LOGGER.debug("User '"+ user.getLogin() + "' saved");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -85,6 +106,6 @@ public class DefaultUserDao extends BaseServletSubject implements UserDao {
         this.provider.get().getTransaction().begin();
         this.provider.get().remove(login);
         this.provider.get().getTransaction().commit();
-        LOGGER.debug("Room '" + login + "' deleted");
+        LOGGER.debug("User '" + login + "' deleted");
     }
 }

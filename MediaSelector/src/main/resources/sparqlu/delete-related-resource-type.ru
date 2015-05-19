@@ -7,7 +7,8 @@ DELETE {
                       ms:has_id ?related_resource_id;
                       ms:has_type ?related_resource_type;
                       ms:has_name ?related_resource_name;
-                      ms:has_relation ?related_resource_relation .
+                      ms:has_relation ?related_resource_relation;
+                      ms:has_title_property ?title_property .
 
     ?main_resource ?relation ?related_resource
 } WHERE {
@@ -18,7 +19,8 @@ DELETE {
     ?related_resource ms:has_id ?related_resource_id;
                       ms:has_type ?related_resource_type;
                       ms:has_name ?related_resource_name;
-                      ms:has_relation ?related_resource_relation .
+                      ms:has_relation ?related_resource_relation;
+                      ms:has_title_property ?title_property .
 
     ?main_resource ?relation ?related_resource
 };

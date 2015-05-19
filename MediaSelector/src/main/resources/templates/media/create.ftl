@@ -7,7 +7,7 @@
     </div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="input-group">
                     <span class="input-group-addon">Title</span>
                     <input type="text" id="media-name" class="form-control" placeholder="Add a name here">
@@ -38,16 +38,22 @@
     <div class="panel-body">
         <div id="media-resource">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="input-group">
                         <span class="input-group-addon">Name</span>
                         <input type="text" class="form-control resource-name" placeholder="Add a resource name here">
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="input-group">
                         <span class="input-group-addon">Type IRI</span>
                         <input type="text" class="form-control resource-type" placeholder="Add the rdf:type IRI of the resource here">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-addon">Title Property IRI</span>
+                        <input type="text" class="form-control resource-title-property" placeholder="Add the title property IRI here">
                     </div>
                 </div>
             </div>
@@ -60,26 +66,34 @@
     </div>
     <div class="panel-body">
         <ul id="related-resources">
-            <li id="resources-row-template" style="display: none">
+            <li id="resources-row-template" style="display: none; margin-top: 30px;">
                 <div class="row">
                     <div class="col-sm-11">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="input-group">
                                     <span class="input-group-addon">Name</span>
                                     <input type="text" class="form-control resource-name" placeholder="Add a resource name here">
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="input-group">
                                     <span class="input-group-addon">Type IRI</span>
                                     <input type="text" class="form-control resource-type" placeholder="Add the rdf:type IRI of the resource here">
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
                                 <div class="input-group">
                                     <span class="input-group-addon">Property IRI</span>
                                     <input type="text" class="form-control resource-property" placeholder="Add the property IRI with the media resource here">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Title Property IRI</span>
+                                    <input type="text" class="form-control resource-title-property" placeholder="Add the title property IRI here">
                                 </div>
                             </div>
                         </div>
@@ -95,22 +109,30 @@
                 <div class="row">
                     <div class="col-sm-11">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="input-group">
                                     <span class="input-group-addon">Name</span>
                                     <input type="text" class="form-control resource-name" placeholder="Add a resource name here">
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="input-group">
                                     <span class="input-group-addon">Type IRI</span>
                                     <input type="text" class="form-control resource-type" placeholder="Add the rdf:type IRI of the resource here">
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
                                 <div class="input-group">
                                     <span class="input-group-addon">Property IRI</span>
                                     <input type="text" class="form-control resource-property" placeholder="Add the property IRI with the media resource here">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Title Property IRI</span>
+                                    <input type="text" class="form-control resource-title-property" placeholder="Add the title property IRI here">
                                 </div>
                             </div>
                         </div>
