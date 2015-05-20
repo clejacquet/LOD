@@ -1,18 +1,11 @@
-<div class="page-header">
-    <h1>Media Selector <small>- Register</small></h1>
+<div class="container">
+    <form class="form-signin" method="POST" action="/user/register">
+        <h2 class="form-signin-heading">Please register</h2>
+        <input type="hidden" name="ask" value="register" />
+        <label for="inputLogin" class="sr-only">Login</label>
+        <input name="login" type="text" id="inputLogin" class="form-control" placeholder="Login" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+    </form>
 </div>
-
-<form method="POST" action="/user/register">
-    <input type="hidden" name="ask" value="register" />
-    <div class="input-group">
-        <span class="input-group-addon">Login</span>
-        <input name="login" type="text" class="form-control" placeholder="Login">
-    </div>
-    <div class="input-group">
-        <span class="input-group-addon">Password</span>
-        <input name="password" type="password" class="form-control" placeholder="Password">
-    </div>
-    <span class="input-group-btn">
-        <input type="submit" class="btn btn-default" value="Register"/>
-    </span>
-</form>

@@ -3,7 +3,7 @@ package jp.kde.lod.jacquet.mediaselector.controller.command.user;
 import jp.kde.lod.jacquet.mediaselector.model.domain.User;
 import jp.kde.lod.jacquet.mediaselector.util.EncryptionUtils;
 import jp.kde.lod.jacquet.mediaselector.controller.CommandFactory;
-import jp.kde.lod.jacquet.mediaselector.controller.command.UnauthenticatedCommand;
+import jp.kde.lod.jacquet.mediaselector.controller.command.SessionHiddenCommand;
 import jp.kde.lod.jacquet.mediaselector.view.ViewFactory;
 import jp.kde.lod.jacquet.pageprocessing.View;
 
@@ -17,7 +17,7 @@ import java.util.Set;
 /**
  * Created by Clement on 17/05/2015.
  */
-public class UserRegisterCommand extends UnauthenticatedCommand {
+public class UserRegisterCommand extends SessionHiddenCommand {
     @Override
     public View process() {
         String ask = super.getHandler().getRequest().getParameter("ask");

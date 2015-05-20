@@ -111,8 +111,8 @@ public class DefaultMediaDao extends BaseServletSubject implements MediaDao {
         ParameterizedSparqlString relatedResourceTypeSparqlString = super.getHandler().getUpdateStorage().getSparqlString("insertRelatedResourceType");
 
         media.save(model, mediaSparqlString);
-        media.getMainResource().save(model, mainResourceTypeSparqlString);
-        for (RelatedResourceType relatedResource : media.getRelatedResource()) {
+        media.getMainResourceType().save(model, mainResourceTypeSparqlString);
+        for (RelatedResourceType relatedResource : media.getRelatedResourceTypes()) {
             long relativeResourceTypeCounter = getRelatedCounter(relatedResource.getMedia().getId()) + 1L;
             relatedResource.setId(relativeResourceTypeCounter);
             setRelatedCounter(relativeResourceTypeCounter, relatedResource.getMedia().getId());
@@ -153,7 +153,11 @@ public class DefaultMediaDao extends BaseServletSubject implements MediaDao {
             mainResourceType.setName(solution.getLiteral("main_resource_name").getString());
             mainResourceType.setTypeUri(solution.getResource("main_resource_type").getURI());
             mainResourceType.setTitlePropertyUri(solution.getResource("title_property").getURI());
-            media.setMainResource(mainResourceType);
+            mainResourceType.setAuthorProperty(solution.getResource("author_property").getURI());
+            mainResourceType.setAuthorNameProperty(solution.getResource("author_name_property").getURI());
+            mainResourceType.setAbstractProperty(solution.getResource("abstract_property").getURI());
+            mainResourceType.setDateProperty(solution.getResource("date_property").getURI());
+            media.setMainResourceType(mainResourceType);
         }
 
         RelatedResourceType relatedResourceType = new RelatedResourceType();
@@ -166,7 +170,7 @@ public class DefaultMediaDao extends BaseServletSubject implements MediaDao {
             relatedResourceType.setTypeUri(solution.getResource("related_resource_type").getURI());
             relatedResourceType.setRelation(solution.getResource("related_resource_relation").getURI());
             relatedResourceType.setTitlePropertyUri(solution.getResource("title_property").getURI());
-            media.getRelatedResource().add(relatedResourceType);
+            media.getRelatedResourceTypes().add(relatedResourceType);
         }
 
         return media;
@@ -214,17 +218,32 @@ public class DefaultMediaDao extends BaseServletSubject implements MediaDao {
         }
 
         searchSparqlString.setParam("search_text", NodeFactory.createLiteral(searchText));
-        searchSparqlString.setParam("resource_type", NodeFactory.createURI(media.getMainResource().getTypeUri()));
-        searchSparqlString.setParam("title_property", NodeFactory.createURI(media.getMainResource().getTitlePropertyUri()));
+        searchSparqlString.setParam("resource_type", NodeFactory.createURI(media.getMainResourceType().getTypeUri()));
+        searchSparqlString.setParam("title_property", NodeFactory.createURI(media.getMainResourceType().getTitlePropertyUri()));
+        searchSparqlString.setParam("author_property", NodeFactory.createURI(media.getMainResourceType().getAuthorProperty()));
+        searchSparqlString.setParam("author_name_property", NodeFactory.createURI(media.getMainResourceType().getAuthorNameProperty()));
+        searchSparqlString.setParam("abstract_property", NodeFactory.createURI(media.getMainResourceType().getAbstractProperty()));
+        searchSparqlString.setParam("date_property", NodeFactory.createURI(media.getMainResourceType().getDateProperty()));
 
         ResultSet results = mediaAccess.executeSelect(searchSparqlString.asQuery());
 
         List<MainResource> resources = new ArrayList<>();
         while (results.hasNext()) {
             QuerySolution solution = results.next();
+
             MainResource mainResource = new MainResource();
+            mainResource.setUri(solution.getResource("resource").getURI());
             mainResource.setName(solution.getLiteral("name").getString());
-            mainResource.setUri(solution.getResource("uri").getURI());
+            mainResource.setAuthorUri(solution.getResource("author").getURI());
+            mainResource.setAuthorName(solution.getLiteral("author_name").getString());
+            mainResource.setAbstractText(solution.getLiteral("abstract").getString());
+
+            Literal date = solution.getLiteral("date");
+            if (date != null) {
+                mainResource.setDate(date.getString());
+            } else {
+                mainResource.setDate("Undefined");
+            }
             resources.add(mainResource);
         }
 

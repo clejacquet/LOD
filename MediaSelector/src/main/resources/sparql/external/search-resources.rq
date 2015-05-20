@@ -1,7 +1,16 @@
-SELECT ?uri ?name
+SELECT DISTINCT ?resource ?name ?author ?author_name ?abstract ?date
 WHERE {
-    ?uri a ?resource_type;
-           ?title_property ?name
 
-    FILTER (regex(?name, ?search_text, "i"))
+    ?resource a ?resource_type;
+              ?title_property ?name;
+              ?author_property ?author;
+              ?abstract_property ?abstract .
+
+    ?author ?author_name_property ?author_name .
+
+    OPTIONAL {
+        ?resource ?date_property ?date .
+    }
+
+    FILTER regex(?name, ?search_text, "i")
 }

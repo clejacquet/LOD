@@ -67,6 +67,8 @@ public final class WebContext {
         queryStorage.add("searchMedia", handler.getAbsolutePath("/sparql/search-media.rq"));
         queryStorage.add("searchResources", handler.getAbsolutePath("/sparql/external/search-resources.rq"));
         queryStorage.add("searchResourcesLang", handler.getAbsolutePath("/sparql/external/search-resources-lang.rq"));
+        queryStorage.add("getMainResource", handler.getAbsolutePath("/sparql/external/get-main-resource.rq"));
+        queryStorage.add("getMainResourceLang", handler.getAbsolutePath("/sparql/external/get-main-resource-lang.rq"));
 
         UpdateStorage updateStorage = handler.getUpdateStorage();
         updateStorage.add("deleteMainResource", handler.getAbsolutePath("/sparqlu/delete-main-resource.ru"));

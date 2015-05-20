@@ -7,7 +7,7 @@ import org.json.JSONObject;
 /**
  * Created by Clement on 15/05/2015.
  */
-public abstract class Resource implements RDFModel, JSONModel {
+public abstract class Resource implements JSONModel {
     private String name;
     private String uri;
 

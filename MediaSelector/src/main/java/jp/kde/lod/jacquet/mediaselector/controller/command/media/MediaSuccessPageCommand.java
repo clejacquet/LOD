@@ -2,7 +2,7 @@ package jp.kde.lod.jacquet.mediaselector.controller.command.media;
 
 import jp.kde.lod.jacquet.mediaselector.model.MediaDao;
 import jp.kde.lod.jacquet.mediaselector.model.domain.Media;
-import jp.kde.lod.jacquet.mediaselector.controller.command.AuthentificatedCommand;
+import jp.kde.lod.jacquet.mediaselector.controller.command.SessionVisibleCommand;
 import jp.kde.lod.jacquet.mediaselector.view.ViewFactory;
 import jp.kde.lod.jacquet.pageprocessing.View;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Created by Clement on 17/05/2015.
  */
-public class MediaSuccessPageCommand extends AuthentificatedCommand {
+public class MediaSuccessPageCommand extends SessionVisibleCommand {
     @Override
     public View process() {
         MediaDao mediaDao = super.getHandler().getDaoProvider().getMediaDao();

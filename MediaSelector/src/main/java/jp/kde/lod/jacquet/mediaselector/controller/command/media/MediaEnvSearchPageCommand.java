@@ -1,6 +1,6 @@
 package jp.kde.lod.jacquet.mediaselector.controller.command.media;
 
-import jp.kde.lod.jacquet.mediaselector.controller.command.AuthentificatedCommand;
+import jp.kde.lod.jacquet.mediaselector.controller.command.SessionVisibleCommand;
 import jp.kde.lod.jacquet.mediaselector.view.ViewFactory;
 import jp.kde.lod.jacquet.pageprocessing.View;
 import jp.kde.lod.jacquet.pageprocessing.WebView;
@@ -8,7 +8,7 @@ import jp.kde.lod.jacquet.pageprocessing.WebView;
 /**
  * Created by Clement on 17/05/2015.
  */
-public class MediaEnvSearchPageCommand extends AuthentificatedCommand {
+public class MediaEnvSearchPageCommand extends SessionVisibleCommand {
     private String media;
 
     @Override

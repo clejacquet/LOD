@@ -61,7 +61,7 @@
     </div>
 </nav>
 
-<div class="container" id="content">
+<div id="content">
 <#include "${content}">
 </div>
 

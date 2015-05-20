@@ -31,6 +31,11 @@ $(document).ready(function() {
         media.name = $("#media-name").val();
         media.sparql = $("#media-sparql").val();
 
+        media.resource.authorProperty = $("#author-property").val();
+        media.resource.authorNameProperty = $("#author-name-property").val();
+        media.resource.abstractProperty = $("#abstract-property").val();
+        media.resource.dateProperty = $("#date-property").val();
+
         media.relatedResources = [];
         $("#related-resources").find(".resource").each(function () {
             media.relatedResources.push(fillRelatedResource(this));

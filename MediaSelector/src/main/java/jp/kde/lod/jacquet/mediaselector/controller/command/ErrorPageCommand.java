@@ -6,7 +6,7 @@ import jp.kde.lod.jacquet.pageprocessing.View;
 /**
  * Created by Clement on 17/05/2015.
  */
-public class ErrorPageCommand extends AuthentificatedCommand {
+public class ErrorPageCommand extends SessionVisibleCommand {
     @Override
     public View process() {
         return ViewFactory.buildBootstrapView("Media Selector - Error", "error.ftl");

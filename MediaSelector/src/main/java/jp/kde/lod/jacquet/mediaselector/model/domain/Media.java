@@ -22,12 +22,12 @@ public class Media implements RDFModel, JSONModel {
     private long id;
     private String name;
     private String sparqlEndPoint;
-    private MainResourceType mainResource;
-    private Collection<RelatedResourceType> relatedResource;
+    private MainResourceType mainResourceType;
+    private Collection<RelatedResourceType> relatedResourceTypes;
     private User author;
 
     public Media() {
-        this.relatedResource = new ArrayList<>();
+        this.relatedResourceTypes = new ArrayList<>();
     }
 
     public long getId() {
@@ -54,20 +54,20 @@ public class Media implements RDFModel, JSONModel {
         this.sparqlEndPoint = sparqlEndPoint;
     }
 
-    public MainResourceType getMainResource() {
-        return mainResource;
+    public MainResourceType getMainResourceType() {
+        return mainResourceType;
     }
 
-    public void setMainResource(MainResourceType mainResource) {
-        this.mainResource = mainResource;
+    public void setMainResourceType(MainResourceType mainResourceType) {
+        this.mainResourceType = mainResourceType;
     }
 
-    public Collection<RelatedResourceType> getRelatedResource() {
-        return relatedResource;
+    public Collection<RelatedResourceType> getRelatedResourceTypes() {
+        return relatedResourceTypes;
     }
 
-    public void setRelatedResource(Collection<RelatedResourceType> relatedResource) {
-        this.relatedResource = relatedResource;
+    public void setRelatedResourceTypes(Collection<RelatedResourceType> relatedResourceTypes) {
+        this.relatedResourceTypes = relatedResourceTypes;
     }
 
 
@@ -97,8 +97,8 @@ public class Media implements RDFModel, JSONModel {
         this.name = mediaJson.getString("name");
         this.sparqlEndPoint = mediaJson.getString("sparql");
 
-        this.mainResource = new MainResourceType(mediaJson.getJSONObject("resource"));
-        this.mainResource.setMedia(this);
+        this.mainResourceType = new MainResourceType(mediaJson.getJSONObject("resource"));
+        this.mainResourceType.setMedia(this);
 
         JSONArray array = mediaJson.getJSONArray("relatedResources");
         int arrayLength = array.length();
@@ -107,7 +107,7 @@ public class Media implements RDFModel, JSONModel {
             JSONObject object = array.getJSONObject(i);
             RelatedResourceType resourceType = new RelatedResourceType(object);
             resourceType.setMedia(this);
-            this.relatedResource.add(resourceType);
+            this.relatedResourceTypes.add(resourceType);
         }
     }
 
@@ -117,11 +117,11 @@ public class Media implements RDFModel, JSONModel {
         mediaJson.put("id", this.id);
         mediaJson.put("name", this.name);
         mediaJson.put("sparql", this.sparqlEndPoint);
-        mediaJson.put("resource", this.mainResource.toJSON());
+        mediaJson.put("resource", this.mainResourceType.toJSON());
         mediaJson.put("author", this.author.getId());
 
         JSONArray relatedResourcesArray = new JSONArray();
-        for (RelatedResourceType relatedResourceType : this.relatedResource) {
+        for (RelatedResourceType relatedResourceType : this.relatedResourceTypes) {
             relatedResourcesArray.put(relatedResourceType.toJSON());
         }
         mediaJson.put("relatedResources", relatedResourcesArray);

@@ -7,5 +7,6 @@ import jp.kde.lod.jacquet.pageprocessing.View;
  */
 public interface HTMLCommand extends ServletSubject {
     View process();
-    boolean isAuthenticatedNeeded();
+    boolean isSessionVisible();
+    boolean isAuthenticationNeeded();
 }

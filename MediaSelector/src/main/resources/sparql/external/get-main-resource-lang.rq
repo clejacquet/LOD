@@ -1,6 +1,5 @@
-SELECT DISTINCT ?resource ?name ?author ?author_name ?abstract ?date
+SELECT DISTINCT ?name ?author ?author_name ?abstract ?date
 WHERE {
-
     ?resource a ?resource_type;
               ?title_property ?name;
               ?author_property ?author;
@@ -12,7 +11,6 @@ WHERE {
         ?resource ?date_property ?date .
     }
 
-    FILTER regex(?name, ?search_text, "i")
     FILTER LANGMATCHES(LANG(?abstract), ?language)
     FILTER LANGMATCHES(LANG(?author_name), ?language)
     FILTER LANGMATCHES(LANG(?name), ?language)

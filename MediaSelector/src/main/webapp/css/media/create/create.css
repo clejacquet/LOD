@@ -10,3 +10,7 @@
 #content li {
     margin-top: 8px;
 }
+
+.input-group-addon {
+    min-width: 170px;
+}
