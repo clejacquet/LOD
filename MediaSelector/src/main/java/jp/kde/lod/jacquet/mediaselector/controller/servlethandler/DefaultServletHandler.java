@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.net.URLEncoder;
 
 /**
  * Created by Clement on 15/05/2015.
@@ -29,22 +30,23 @@ public class DefaultServletHandler extends BaseServletHandler {
 
     @Override
     public View processHTML(HTMLCommand command) {
-        command.setHandler(this);
-        View view = command.process();
-
-        if (command.isSessionVisible()) {
-            view.addParameter(WebContext.getSessionUserKey(), this.getAuthenticatedUser(super.getRequest()));
-        }
         if (command.isAuthenticationNeeded()) {
             HttpSession session = super.getRequest().getSession(false);
             if (session == null) {
                 try {
-                    super.getResponse().sendRedirect(CONNECTION_REDIRECT);
+                    super.getResponse().sendRedirect(CONNECTION_REDIRECT + "?redirection=" + URLEncoder.encode(command.getRedirectionURL(), "UTF-8"));
                     return ViewFactory.buildEmptyView();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
+        }
+
+        command.setHandler(this);
+        View view = command.process();
+
+        if (command.isSessionVisible()) {
+            view.addParameter(WebContext.getSessionUserKey(), this.getAuthenticatedUser(super.getRequest()));
         }
 
         return view;

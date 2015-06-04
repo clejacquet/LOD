@@ -9,8 +9,7 @@ DELETE {
                        ms:has_title_property ?old_title_property;
                        ms:has_author_property ?old_author_property;
                        ms:has_author_name_property ?old_author_name_property;
-                       ms:has_abstract_property ?old_abstract_property;
-                       ms:has_date_property ?old_date_property
+                       ms:has_abstract_property ?old_abstract_property
 } WHERE {
     ?media a ms:media;
            ms:has_id ?media_id;
@@ -21,8 +20,7 @@ DELETE {
                        ms:has_title_property ?old_title_property;
                        ms:has_author_property ?old_author_property;
                        ms:has_author_name_property ?old_author_name_property;
-                       ms:has_abstract_property ?old_abstract_property;
-                       ms:has_date_property ?old_date_property
+                       ms:has_abstract_property ?old_abstract_property
 };
 
 INSERT {
@@ -34,8 +32,7 @@ INSERT {
                    ms:has_title_property ?title_property;
                    ms:has_author_property ?author_property;
                    ms:has_author_name_property ?author_name_property;
-                   ms:has_abstract_property ?abstract_property;
-                   ms:has_date_property ?date_property
+                   ms:has_abstract_property ?abstract_property
 } WHERE {
     ?media a ms:media;
            ms:has_id ?media_id

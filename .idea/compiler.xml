@@ -43,18 +43,42 @@
         <processorPath useClasspath="true" />
         <module name="PageProcessing" />
       </profile>
+      <profile default="false" name="Annotation profile for CustomMediaLite" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="CustomMediaLite" />
+      </profile>
+      <profile default="false" name="Annotation profile for JenaMediaLite" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="JenaMediaLite" />
+      </profile>
+      <profile default="false" name="Annotation profile for MovieLensLoader" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="MovieLensLoader" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="access" target="1.5" />
       <module name="Access" target="1.5" />
+      <module name="CustomMediaLite" target="1.8" />
+      <module name="JenaMediaLite" target="1.8" />
       <module name="LOD" target="1.5" />
       <module name="main" target="1.5" />
       <module name="MediaSelector" target="1.8" />
+      <module name="MovieLensLoader" target="1.8" />
       <module name="ontology-test" target="1.5" />
       <module name="PageProcessing" target="1.8" />
       <module name="query-launcher" target="1.5" />
-      <module name="Samples" target="1.5" />
       <module name="samples" target="1.5" />
+      <module name="Samples" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

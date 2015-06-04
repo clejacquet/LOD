@@ -1,10 +1,16 @@
 PREFIX ms: <http://mediaselector.com/data/ont/>
 
-SELECT ?media_id
+SELECT ?media_id (COUNT(?user) as ?user_count)
 WHERE {
     ?media a ms:media;
            ms:has_id ?media_id;
            ms:has_name ?media_name .
 
+    OPTIONAL {
+        ?media ms:has_subscribed ?user
+    }
+
     FILTER regex(?media_name, ?search_text, "i")
 }
+GROUP BY ?media_id
+ORDER BY DESC(?user_count)

@@ -3,7 +3,8 @@ package jp.kde.lod.jacquet.mediaselector.controller.routing;
 import com.google.inject.Inject;
 import jp.kde.lod.jacquet.mediaselector.controller.CommandFactory;
 import jp.kde.lod.jacquet.mediaselector.controller.WebContext;
-import jp.kde.lod.jacquet.mediaselector.controller.command.media.*;
+import jp.kde.lod.jacquet.mediaselector.controller.command.html.media.*;
+import jp.kde.lod.jacquet.mediaselector.controller.command.service.media.*;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -23,17 +24,6 @@ public class MediaRouter {
     }
 
     @GET
-    @Path("/")
-    @Produces("text/html")
-    public String homePage(@Context ServletContext context,
-                           @Context HttpServletRequest request,
-                           @Context HttpServletResponse response) {
-        return WebContext.getServletHandler(context, request, response)
-                .processHTML(CommandFactory.buildHTMLCommand(MediaHomePageCommand.class))
-                .toString();
-    }
-
-    @GET
     @Path("/create")
     @Produces("text/html")
     public String createPage(@Context ServletContext context,
@@ -41,28 +31,6 @@ public class MediaRouter {
                              @Context HttpServletResponse response) {
         return WebContext.getServletHandler(context, request, response)
                 .processHTML(CommandFactory.buildHTMLCommand(MediaCreatePageCommand.class))
-                .toString();
-    }
-
-    @POST
-    @Path("/create/validate")
-    @Produces("application/json")
-    public String createValidationPage(@Context ServletContext context,
-                                       @Context HttpServletRequest request,
-                                       @Context HttpServletResponse response) {
-        return WebContext.getServletHandler(context, request, response)
-                .processJSON(CommandFactory.buildJSONCommand(MediaValidationCommand.class))
-                .toString();
-    }
-
-    @POST
-    @Path("/create/success")
-    @Produces("text/html")
-    public String createSuccessPage(@Context ServletContext context,
-                                    @Context HttpServletRequest request,
-                                    @Context HttpServletResponse response) {
-        return WebContext.getServletHandler(context, request, response)
-                .processHTML(CommandFactory.buildHTMLCommand(MediaSuccessPageCommand.class))
                 .toString();
     }
 
@@ -74,17 +42,6 @@ public class MediaRouter {
                              @Context HttpServletResponse response) {
         return WebContext.getServletHandler(context, request, response)
                 .processHTML(CommandFactory.buildHTMLCommand(MediaSearchPageCommand.class))
-                .toString();
-    }
-
-    @POST
-    @Path("/search")
-    @Produces("application/json")
-    public String searchService(@Context ServletContext context,
-                                @Context HttpServletRequest request,
-                                @Context HttpServletResponse response) {
-        return WebContext.getServletHandler(context, request, response)
-                .processJSON(CommandFactory.buildJSONCommand(MediaSearchCommand.class))
                 .toString();
     }
 
@@ -101,15 +58,39 @@ public class MediaRouter {
                 .toString();
     }
 
-    @GET
-    @Path("/{media-env}/search")
-    @Produces("text/html")
-    public String mediaSearchPage(@Context ServletContext context,
-                                  @Context HttpServletRequest request,
-                                  @Context HttpServletResponse response,
-                                  @PathParam("media-env") String media) {
+    @POST
+    @Path("/create")
+    @Produces("application/json")
+    public String createValidationPage(@Context ServletContext context,
+                                       @Context HttpServletRequest request,
+                                       @Context HttpServletResponse response) {
         return WebContext.getServletHandler(context, request, response)
-                .processHTML(CommandFactory.buildHTMLCommand(MediaEnvSearchPageCommand.class)
+                .processJSON(CommandFactory.buildJSONCommand(MediaCreateCommand.class))
+                .toString();
+    }
+
+
+
+    @POST
+    @Path("/search")
+    @Produces("application/json")
+    public String searchService(@Context ServletContext context,
+                                @Context HttpServletRequest request,
+                                @Context HttpServletResponse response) {
+        return WebContext.getServletHandler(context, request, response)
+                .processJSON(CommandFactory.buildJSONCommand(MediaSearchCommand.class))
+                .toString();
+    }
+
+    @POST
+    @Path("/{media-env}")
+    @Produces("application/json")
+    public String mediaCommand(@Context ServletContext context,
+                               @Context HttpServletRequest request,
+                               @Context HttpServletResponse response,
+                               @PathParam("media-env") String media) {
+        return WebContext.getServletHandler(context, request, response)
+                .processJSON(CommandFactory.buildJSONCommand(MediaCommand.class)
                         .setMedia(media))
                 .toString();
     }
@@ -127,59 +108,29 @@ public class MediaRouter {
                 .toString();
     }
 
-    @GET
-    @Path("/{media-env}/stats")
-    @Produces("text/html")
-    public String statsPage(@Context ServletContext context,
-                            @Context HttpServletRequest request,
-                            @Context HttpServletResponse response,
-                            @PathParam("media-env") String media) {
+    @POST
+    @Path("/{media-env}/selector")
+    @Produces("application/json")
+    public String selector(@Context ServletContext context,
+                           @Context HttpServletRequest request,
+                           @Context HttpServletResponse response,
+                           @PathParam("media-env") String media) {
         return WebContext.getServletHandler(context, request, response)
-                .processHTML(CommandFactory.buildHTMLCommand(MediaStatsPageCommand.class)
+                .processJSON(CommandFactory.buildJSONCommand(MediaSelectorCommand.class)
                         .setMedia(media))
                 .toString();
     }
 
-    @GET
-    @Path("/{media-env}/selector")
-    @Produces("text/html")
-    public String selectorPage(@Context ServletContext context,
+    @POST
+    @Path("/{media-env}/res")
+    @Produces("application/json")
+    public String resourcePrediction(@Context ServletContext context,
                                @Context HttpServletRequest request,
                                @Context HttpServletResponse response,
                                @PathParam("media-env") String media) {
         return WebContext.getServletHandler(context, request, response)
-                .processHTML(CommandFactory.buildHTMLCommand(MediaSelectorPageCommand.class)
+                .processJSON(CommandFactory.buildJSONCommand(MediaResourceCommand.class)
                         .setMedia(media))
-                .toString();
-    }
-
-    @GET
-    @Path("/{media-env}/{media-res}")
-    @Produces("text/html")
-    public String resourcePage(@Context ServletContext context,
-                               @Context HttpServletRequest request,
-                               @Context HttpServletResponse response,
-                               @PathParam("media-env") String media,
-                               @PathParam("media-res") String resource) {
-        return WebContext.getServletHandler(context, request, response)
-                .processHTML(CommandFactory.buildHTMLCommand(MediaResourcePageCommand.class)
-                        .setMedia(media)
-                        .setResource(resource))
-                .toString();
-    }
-
-    @GET
-    @Path("/{media-env}/{media-res}/predictor")
-    @Produces("text/html")
-    public String predictorPage(@Context ServletContext context,
-                                @Context HttpServletRequest request,
-                                @Context HttpServletResponse response,
-                                @PathParam("media-env") String media,
-                                @PathParam("media-res") String resource) {
-        return WebContext.getServletHandler(context, request, response)
-                .processHTML(CommandFactory.buildHTMLCommand(MediaPredictorPageCommand.class)
-                        .setMedia(media)
-                        .setResource(resource))
                 .toString();
     }
 }

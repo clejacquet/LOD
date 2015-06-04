@@ -1,0 +1,15 @@
+PREFIX ms: <http://mediaselector.com/data/ont/>
+
+SELECT DISTINCT ?resource
+WHERE {
+    [] ms:like ?resource .
+
+    ?user a ms:user;
+          ms:has_id ?user_id .
+
+    OPTIONAL {
+        ?user ms:like ?liked_resource .
+        FILTER (?liked_resource = ?resource)
+    }
+    FILTER (!BOUND(?liked_resource))
+}

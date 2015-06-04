@@ -1,0 +1,12 @@
+PREFIX ms: <http://mediaselector.com/data/ont/>
+
+SELECT ?user ?resource_uri
+WHERE {
+    ?media a ms:media;
+           ms:has_id ?media_id;
+           ms:has_main_resource ?main_resource_type .
+
+    ?resource_uri a ?main_resource_type .
+
+    ?user ms:like ?resource_uri .
+}

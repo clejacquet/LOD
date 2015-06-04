@@ -1,0 +1,10 @@
+PREFIX ms: <http://mediaselector.com/data/ont/>
+
+ASK {
+    ?user a ms:user;
+          ms:has_id ?user_id .
+
+    ?media a ms:media;
+          ms:has_id ?media_id;
+          ms:has_subscribed ?user
+}

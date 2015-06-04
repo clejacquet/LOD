@@ -1,0 +1,5 @@
+PREFIX ms: <http://mediaselector.com/data/ont/>
+
+SELECT (COUNT(*) AS ?count)  {
+    [] ms:like ?resource_uri
+}

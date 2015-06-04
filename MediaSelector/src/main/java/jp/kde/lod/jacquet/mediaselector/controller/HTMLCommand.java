@@ -9,4 +9,5 @@ public interface HTMLCommand extends ServletSubject {
     View process();
     boolean isSessionVisible();
     boolean isAuthenticationNeeded();
+    String getRedirectionURL();
 }

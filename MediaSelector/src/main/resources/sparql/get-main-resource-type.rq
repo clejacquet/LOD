@@ -12,6 +12,5 @@ WHERE {
                    ms:has_title_property ?title_property;
                    ms:has_author_property ?author_property;
                    ms:has_author_name_property ?author_name_property;
-                   ms:has_abstract_property ?abstract_property;
-                   ms:has_date_property ?date_property
+                   ms:has_abstract_property ?abstract_property
 }

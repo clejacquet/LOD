@@ -1,0 +1,14 @@
+PREFIX ms: <http://mediaselector.com/data/ont/>
+
+SELECT ?media_id (COUNT(?any_user) AS ?any_user_count)
+WHERE {
+    ?media a ms:media;
+           ms:has_id ?media_id;
+           ms:has_subscribed ?user;
+           ms:has_subscribed ?any_user .
+
+    ?user a ms:user;
+          ms:has_id ?user_id
+}
+GROUP BY ?media_id
+ORDER BY DESC(?any_user_count)

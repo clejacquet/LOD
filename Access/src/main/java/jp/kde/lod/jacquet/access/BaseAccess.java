@@ -1,16 +1,9 @@
 package jp.kde.lod.jacquet.access;
 
-import com.hp.hpl.jena.graph.Node;
-import com.hp.hpl.jena.query.ParameterizedSparqlString;
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.Model;
-import org.apache.commons.io.IOUtils;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Map;
 
 /**
  * Created by Clement on 13/05/2015.

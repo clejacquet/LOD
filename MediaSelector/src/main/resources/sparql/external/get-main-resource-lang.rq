@@ -1,17 +1,21 @@
-SELECT DISTINCT ?name ?author ?author_name ?abstract ?date
+SELECT DISTINCT
+?name
+(IF(bound(?author_def), ?author_def, <none>) AS ?author)
+(IF(bound(?abstract_def), ?abstract_def, "No abstract") AS ?abstract)
+(IF(bound(?author_name_def), ?author_name_def, "Anonymous") AS ?author_name)
 WHERE {
     ?resource a ?resource_type;
-              ?title_property ?name;
-              ?author_property ?author;
-              ?abstract_property ?abstract .
-
-    ?author ?author_name_property ?author_name .
+                ?title_property ?name
 
     OPTIONAL {
-        ?resource ?date_property ?date .
+        ?resource ?abstract_property ?abstract_def
+    }
+    OPTIONAL {
+        ?resource ?author_property ?author_def .
+        ?author_def ?author_name_property ?author_name_def
     }
 
-    FILTER LANGMATCHES(LANG(?abstract), ?language)
-    FILTER LANGMATCHES(LANG(?author_name), ?language)
+    FILTER LANGMATCHES(LANG(?abstract_def), ?language)
+    FILTER (!BOUND(?author_name_def) || (LANGMATCHES(LANG(?author_name_def), "en")))
     FILTER LANGMATCHES(LANG(?name), ?language)
 }

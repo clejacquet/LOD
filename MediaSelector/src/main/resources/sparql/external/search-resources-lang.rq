@@ -8,10 +8,6 @@ WHERE {
 
     ?author ?author_name_property ?author_name .
 
-    OPTIONAL {
-        ?resource ?date_property ?date .
-    }
-
     FILTER regex(?name, ?search_text, "i")
     FILTER LANGMATCHES(LANG(?abstract), ?language)
     FILTER LANGMATCHES(LANG(?author_name), ?language)

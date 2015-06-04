@@ -19,13 +19,9 @@ public final class ViewFactory {
         mediaSubItems.put("Search a media environment", "/media/search");
         mediaSubItems.put("Create a new one!", "/media/create");
 
-        Map<String, String> dataSubItems = new LinkedHashMap<>();
-        dataSubItems.put("Vocabulary", "/data/voc");
-
         Map<String, HeaderItem> headerItems = new HashMap<>();
         headerItems.put("/home", HeaderItem.buildItem("Home"));
         headerItems.put("/media", HeaderItem.buildDropdownList("Media", mediaSubItems));
-        headerItems.put("/data", HeaderItem.buildDropdownList("Data", dataSubItems));
 
         Layout layout = new DefaultLayout();
         layout.setLayoutTemplate("/templates/layout.ftl");

@@ -3,7 +3,7 @@ package jp.kde.lod.jacquet.mediaselector.controller.routing;
 import com.google.inject.Inject;
 import jp.kde.lod.jacquet.mediaselector.controller.CommandFactory;
 import jp.kde.lod.jacquet.mediaselector.controller.WebContext;
-import jp.kde.lod.jacquet.mediaselector.controller.command.home.HomePageCommand;
+import jp.kde.lod.jacquet.mediaselector.controller.command.html.home.HomePageCommand;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;

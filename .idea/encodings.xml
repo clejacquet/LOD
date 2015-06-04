@@ -15,8 +15,13 @@
     <file url="file://$PROJECT_DIR$/MediaSelector/src/main/resources/templates/user" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/MediaSelector/src/main/webapp/WEB-INF/classes/logging.properties" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/MediaSelector/src/main/webapp/css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MediaSelector/src/main/webapp/css/home/home.css" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/MediaSelector/src/main/webapp/css/media/create/create.css" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/MediaSelector/src/main/webapp/fonts" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/MediaSelector/src/main/webapp/js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MovieLensLoader/src/main/java/jp/kde/lod/jacquet/movielensloader/EncryptionUtils.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MovieLensLoader/src/main/java/jp/kde/lod/jacquet/movielensloader/User.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MovieLensLoader/src/main/java/jp/kde/lod/jacquet/movielensloader/UserDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MovieLensLoader/src/main/resources/META-INF/persistence.xml" charset="UTF-8" />
   </component>
 </project>

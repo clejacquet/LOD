@@ -3,7 +3,10 @@ package jp.kde.lod.jacquet.mediaselector.controller.routing;
 import com.google.inject.Inject;
 import jp.kde.lod.jacquet.mediaselector.controller.CommandFactory;
 import jp.kde.lod.jacquet.mediaselector.controller.WebContext;
-import jp.kde.lod.jacquet.mediaselector.controller.command.user.*;
+import jp.kde.lod.jacquet.mediaselector.controller.command.html.user.*;
+import jp.kde.lod.jacquet.mediaselector.controller.command.service.user.UserConnectionCommand;
+import jp.kde.lod.jacquet.mediaselector.controller.command.service.user.UserLogoutCommand;
+import jp.kde.lod.jacquet.mediaselector.controller.command.service.user.UserRegisterCommand;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;

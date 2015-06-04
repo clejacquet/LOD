@@ -1,8 +1,4 @@
 <div class="container">
-
-    <div class="page-header">
-        <h1>Media Selector <small>- Media Search</small></h1>
-    </div>
     <div class="row" style="margin-bottom: 15px;">
         <div class="col-md-8">
             <div class="input-group">

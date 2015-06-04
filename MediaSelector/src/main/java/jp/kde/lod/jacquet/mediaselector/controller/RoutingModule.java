@@ -12,7 +12,5 @@ public class RoutingModule implements Module {
         binder.bind(HomeRouter.class);
         binder.bind(MediaRouter.class);
         binder.bind(UserRouter.class);
-        binder.bind(DataRouter.class);
-        binder.bind(DocRouter.class);
     }
 }

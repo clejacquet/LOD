@@ -16,7 +16,6 @@ public class MainResourceType extends ResourceType {
     private String authorProperty;
     private String authorNameProperty;
     private String abstractProperty;
-    private String dateProperty;
 
     public MainResourceType() {
 
@@ -50,14 +49,6 @@ public class MainResourceType extends ResourceType {
         this.abstractProperty = abstractProperty;
     }
 
-    public String getDateProperty() {
-        return dateProperty;
-    }
-
-    public void setDateProperty(String dateProperty) {
-        this.dateProperty = dateProperty;
-    }
-
     @Override
     public void save(Model model, ParameterizedSparqlString updateSparqlString) {
         UpdateAccess access = new ModelAccess(model);
@@ -70,7 +61,6 @@ public class MainResourceType extends ResourceType {
         updateSparqlString.setParam("author_property", NodeFactory.createURI(this.authorProperty));
         updateSparqlString.setParam("author_name_property", NodeFactory.createURI(this.authorNameProperty));
         updateSparqlString.setParam("abstract_property", NodeFactory.createURI(this.abstractProperty));
-        updateSparqlString.setParam("date_property", NodeFactory.createURI(this.dateProperty));
 
         access.execute(updateSparqlString.asUpdate());
     }
@@ -82,7 +72,6 @@ public class MainResourceType extends ResourceType {
         this.authorProperty = jsonObject.getString("authorProperty");
         this.authorNameProperty = jsonObject.getString("authorNameProperty");
         this.abstractProperty = jsonObject.getString("abstractProperty");
-        this.dateProperty = jsonObject.getString("dateProperty");
     }
 
     @Override
@@ -92,7 +81,6 @@ public class MainResourceType extends ResourceType {
         resourceJson.put("authorProperty", this.authorProperty);
         resourceJson.put("authorNameProperty", this.authorNameProperty);
         resourceJson.put("abstractProperty", this.abstractProperty);
-        resourceJson.put("dateProperty", this.dateProperty);
 
         return resourceJson;
     }

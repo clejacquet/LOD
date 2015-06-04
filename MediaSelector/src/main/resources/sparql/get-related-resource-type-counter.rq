@@ -1,8 +1,0 @@
-PREFIX ms: <http://mediaselector.com/data/ont/>
-
-SELECT ?value
-WHERE {
-    ?relative_resource_type_counter a ms:relative_resource_type_counter;
-                                    ms:has_id ?media_id;
-                                    ms:has_value ?value
-}

@@ -1,7 +1,5 @@
 package jp.kde.lod.jacquet.mediaselector.model.domain;
 
-import com.hp.hpl.jena.query.ParameterizedSparqlString;
-import com.hp.hpl.jena.rdf.model.Model;
 import org.json.JSONObject;
 
 /**
@@ -12,6 +10,7 @@ public class MainResource extends Resource {
     private String authorName;
     private String abstractText;
     private String date;
+    private int likeCount;
 
     public String getAuthorUri() {
         return authorUri;
@@ -45,13 +44,21 @@ public class MainResource extends Resource {
         this.date = date;
     }
 
+    public int getLikeCount() {
+        return likeCount;
+    }
+
+    public void setLikeCount(int likeCount) {
+        this.likeCount = likeCount;
+    }
+
     @Override
     public void loadJSON(JSONObject jsonObject) {
         super.loadJSON(jsonObject);
         this.authorUri = jsonObject.getString("author");
         this.authorName = jsonObject.getString("author_name");
         this.abstractText = jsonObject.getString("abstract");
-        this.date = jsonObject.getString("date");
+        this.likeCount = jsonObject.getInt("like_count");
     }
 
     @Override
@@ -61,7 +68,7 @@ public class MainResource extends Resource {
         mainResourceJson.put("author", this.authorUri);
         mainResourceJson.put("author_name", this.authorName);
         mainResourceJson.put("abstract", this.abstractText);
-        mainResourceJson.put("date", this.date);
+        mainResourceJson.put("like_count", this.likeCount);
 
         return mainResourceJson;
     }

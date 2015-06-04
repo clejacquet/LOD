@@ -1,12 +1,9 @@
 package jp.kde.lod.jacquet.access;
 
-import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.query.*;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.update.UpdateAction;
 import com.hp.hpl.jena.update.UpdateRequest;
-
-import java.util.Map;
 
 /**
  * Created by Clement on 27/04/2015.

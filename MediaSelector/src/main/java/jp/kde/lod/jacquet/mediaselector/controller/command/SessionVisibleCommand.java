@@ -15,4 +15,9 @@ public abstract class SessionVisibleCommand extends BaseServletSubject implement
     public boolean isAuthenticationNeeded() {
         return false;
     }
+
+    @Override
+    public String getRedirectionURL() {
+        return "/home";
+    }
 }

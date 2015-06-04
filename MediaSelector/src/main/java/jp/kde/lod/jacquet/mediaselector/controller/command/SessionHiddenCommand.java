@@ -15,4 +15,9 @@ public abstract class SessionHiddenCommand extends BaseServletSubject implements
     public boolean isAuthenticationNeeded() {
         return false;
     }
+
+    @Override
+    public String getRedirectionURL() {
+        return "/home";
+    }
 }
