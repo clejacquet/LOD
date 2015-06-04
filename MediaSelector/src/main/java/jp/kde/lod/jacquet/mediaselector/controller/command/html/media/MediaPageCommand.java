@@ -36,12 +36,15 @@ public class MediaPageCommand extends AuthenticatedCommand {
             mediaView.setSubscribedCount(mediaDao.getUserSubscribedCount(mediaId));
             mediaView.setAuthor(media.getAuthor().getLogin());
 
+            boolean admin = user.getId() == media.getAuthor().getId();
+
             WebView view = ViewFactory.buildBootstrapView("Media Selector - " + this.media, "media/home.ftl");
             view.addJs("/js/media/media.js");
             view.addJs("/js/media/rate.js");
             view.addJs("/js/media/search-resource.js");
             view.addJs("/js/media/selector.js");
             view.addParameter("media", mediaView);
+            view.addParameter("admin", admin);
             return view;
         }
 

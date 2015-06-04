@@ -40,6 +40,22 @@ $(document).ready(function() {
     $("#unsubscribe-button").click(function() {
         sendSubscriptionAction(this, $("#media-id").text(), "undo");
     });
+    $("#delete-button").click(function() {
+        if (!confirm("Are you sure that you want to delete this media rater?")) {
+            return;
+        }
+        $.ajax({
+            type: 'POST',
+            url: '/media/' + $("#media-id").text(),
+            data: {
+                'delete' : 'yes'
+            }
+        }).done(function(data) {
+            if (data.deleteStatus === "done") {
+                window.location.href = "/home";
+            }
+        });
+    });
 });
 
 

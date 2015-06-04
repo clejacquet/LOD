@@ -19,6 +19,7 @@ public interface MediaDao extends ServletSubject {
     void setMediaCounter(long counter);
 
     void saveMedia(Media media);
+    void deleteMedia(long mediaId);
     Media getMedia(long mediaId);
 
     void subscribeUserToMedia(long userId, long mediaId);

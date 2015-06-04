@@ -1,11 +1,16 @@
 <div class="container">
     <div id="media-id" style="display: none;">${media.id}</div>
     <div class="page-header">
-    <#if media.subscribed>
-        <button id="unsubscribe-button" class="btn btn-danger pull-right">Unsubscribe</button>
-    <#else>
-        <button id="subscribe-button" class="btn btn-primary pull-right">Subscribe</button>
-    </#if>
+        <div class="pull-right">
+        <#if admin == true>
+            <button id="delete-button" class="btn btn-danger">Delete</button>
+        </#if>
+        <#if media.subscribed>
+            <button id="unsubscribe-button" class="btn btn-danger">Unsubscribe</button>
+        <#else>
+            <button id="subscribe-button" class="btn btn-primary">Subscribe</button>
+        </#if>
+        </div>
         <h1>${media.title}<small> - ${media.author}</small></h1>
     </div>
     <p style="font-size: 1.2em; margin-bottom: 20px;">

@@ -92,6 +92,18 @@ public class DefaultMediaDao extends BaseServletSubject implements MediaDao {
     }
 
     @Override
+    public void deleteMedia(long mediaId) {
+        Model model = DefaultMediaDao.getMediaModel();
+        DefaultMediaDao.InitGraph(model);
+
+        ParameterizedSparqlString mediaSparqlString = super.getHandler().getUpdateStorage().getSparqlString("deleteMedia");
+        mediaSparqlString.setParam("media_id", NodeFactory.createLiteral(Long.toString(mediaId), XSDDatatype.XSDlong));
+
+        UpdateAccess access = new ModelAccess(model);
+        access.execute(mediaSparqlString.asUpdate());
+    }
+
+    @Override
     public Media getMedia(long mediaId) {
         Model model = DefaultMediaDao.getMediaModel();
         DefaultMediaDao.InitGraph(model);

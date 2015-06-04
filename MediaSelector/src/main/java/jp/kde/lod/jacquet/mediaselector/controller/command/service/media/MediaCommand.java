@@ -3,10 +3,12 @@ package jp.kde.lod.jacquet.mediaselector.controller.command.service.media;
 import jp.kde.lod.jacquet.mediaselector.controller.JSONCommand;
 import jp.kde.lod.jacquet.mediaselector.controller.command.BaseServletSubject;
 import jp.kde.lod.jacquet.mediaselector.model.MediaDao;
+import jp.kde.lod.jacquet.mediaselector.model.domain.Media;
 import jp.kde.lod.jacquet.mediaselector.model.domain.User;
 import org.json.JSONObject;
 
 import javax.servlet.http.HttpSession;
+import java.util.Locale;
 
 /**
  * Created by Clement on 31/05/2015.
@@ -26,6 +28,23 @@ public class MediaCommand extends BaseServletSubject implements JSONCommand {
                 String subscriberCountAsk = super.getHandler().getRequest().getParameter("subscriber_count");
                 String isSubscribedAsk = super.getHandler().getRequest().getParameter("is_subscribed");
                 String subscription = super.getHandler().getRequest().getParameter("subscription");
+                String delete = super.getHandler().getRequest().getParameter("delete");
+
+                if (delete != null) {
+                    if (delete.equals("yes")) {
+                        Media media = mediaDao.getMedia(Long.parseLong(this.media));
+                        if (media != null) {
+                            if (media.getAuthor().getId() == user.getId()) {
+                                mediaDao.deleteMedia(media.getId());
+                                result.put("deleteStatus", "done");
+                            } else {
+                                result.put("deleteStatus", "error");
+                            }
+                        } else {
+                            result.put("deleteStatus", "error");
+                        }
+                    }
+                }
 
                 if (subscription != null) {
                     if (subscription.equals("do")) {
