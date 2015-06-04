@@ -26,8 +26,10 @@ public interface MediaDao extends ServletSubject {
     void unsubscribeUserToMedia(long userId, long mediaId);
     boolean isSubscribed(long userId, long mediaId);
     Integer getUserSubscribedCount(long mediaId);
-    List<Long> getSubscriptions(long userId);
-    List<Long> getSubscriptions(long userId, int limit);
+    List<Media> getSubscriptions(long userId);
+    List<Media> getSubscriptions(long userId, int limit);
+    Map<Media, Integer> getSubscriptionsWithCount(long userId);
+    Map<Media, Integer> getSubscriptionsWithCount(long userId, int limit);
 
     MainResource getMainResource(long mediaId, String resourceURI);
 
@@ -36,6 +38,7 @@ public interface MediaDao extends ServletSubject {
 
     void saveUser(User user);
     String getUserUri(long userId);
+    Map<Media, Integer> getOwnedMedias(long userId);
 
     void rateMainResource(User user, long mediaId, String mainResourceUri);
     void unrateMainResource(User user, String mainResourceUri);

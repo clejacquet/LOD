@@ -11,7 +11,7 @@
             <button id="subscribe-button" class="btn btn-primary">Subscribe</button>
         </#if>
         </div>
-        <h1>${media.title}<small> - ${media.author}</small></h1>
+        <h1>${media.title}<small> - <a href="/user/${media.authorId}">${media.author}</a></small></h1>
     </div>
     <p style="font-size: 1.2em; margin-bottom: 20px;">
         ${media.description}

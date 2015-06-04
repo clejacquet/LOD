@@ -66,6 +66,7 @@ public final class WebContext {
         queryStorage.add("getLikeCount", handler.getAbsolutePath("/sparql/get-like-count.rq"));
         queryStorage.add("getUsersLikes", handler.getAbsolutePath("/sparql/get-users-likes.rq"));
         queryStorage.add("getUserUri", handler.getAbsolutePath("/sparql/get-user-uri.rq"));
+        queryStorage.add("getOwnedMedias", handler.getAbsolutePath("/sparql/get-owned-medias.rq"));
         queryStorage.add("getUnratedResources", handler.getAbsolutePath("/sparql/get-unrated-resources.rq"));
         queryStorage.add("searchMedia", handler.getAbsolutePath("/sparql/search-media.rq"));
         queryStorage.add("searchResources", handler.getAbsolutePath("/sparql/external/search-resources.rq"));

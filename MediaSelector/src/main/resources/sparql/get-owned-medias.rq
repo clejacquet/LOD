@@ -5,7 +5,6 @@ SELECT
 ?media_name
 ?media_description
 ?media_end_point
-?author_id
 (COUNT(?any_user) AS ?subscribed_count)
 WHERE {
     ?media a ms:media;
@@ -13,17 +12,13 @@ WHERE {
            ms:has_end_point ?media_end_point;
            ms:has_name ?media_name;
            ms:has_description ?media_description;
-           ms:has_author ?author;
-           ms:has_subscribed ?user .
+           ms:has_author ?author .
 
-    ?author ms:has_id ?author_id .
-
-    ?user a ms:user;
-          ms:has_id ?user_id
+    ?author ms:has_id ?user_id .
 
     OPTIONAL {
         ?media ms:has_subscribed ?any_user
     }
 }
-GROUP BY ?media_id ?media_name ?media_description ?media_end_point ?author_id
+GROUP BY ?media_id ?media_name ?media_description ?media_end_point
 ORDER BY DESC(?subscribed_count)

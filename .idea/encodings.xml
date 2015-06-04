@@ -6,8 +6,6 @@
     <file url="file://$PROJECT_DIR$/MediaSelector/src/main/java/jp/kde/lod/jacquet/mediaselector/model/domain/User.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/MediaSelector/src/main/java/jp/kde/lod/jacquet/mediaselector/util/EncryptionUtils.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/MediaSelector/src/main/resources/META-INF/persistence.xml" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/MediaSelector/src/main/resources/templates/data" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/MediaSelector/src/main/resources/templates/doc" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/MediaSelector/src/main/resources/templates/error.ftl" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/MediaSelector/src/main/resources/templates/home.ftl" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/MediaSelector/src/main/resources/templates/layout.ftl" charset="UTF-8" />

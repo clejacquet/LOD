@@ -33,7 +33,7 @@
             <#list medias as media>
                 <li class="list-group-item">
                     <span class="media-id" style="display: none">${media.id}</span>
-                    <a href="/media/1" style="font-weight: bold; font-size: 1.2em">${media.title}</a>
+                    <a href="/media/${media.id}" style="font-weight: bold; font-size: 1.2em">${media.title}</a>
                     <span>
                         <span class="badge" style="margin-left: 10px;">
                             <span class="glyphicon glyphicon-heart"></span> ${media.subscribedCount} subscriber(s)

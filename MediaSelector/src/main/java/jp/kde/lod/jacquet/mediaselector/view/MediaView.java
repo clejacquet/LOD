@@ -8,6 +8,7 @@ public class MediaView {
     private String title;
     private String description;
     private String author;
+    private long authorId;
     private boolean subscribed;
     private int subscribedCount;
 
@@ -57,5 +58,13 @@ public class MediaView {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public long getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(long authorId) {
+        this.authorId = authorId;
     }
 }

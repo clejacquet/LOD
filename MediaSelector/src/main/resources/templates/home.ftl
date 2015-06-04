@@ -104,7 +104,7 @@
         <h1>Welcome to Media Selector!</h1>
         <p>Create your own media rater, based on existing data stored in RDF dataset, or rate media items of an existing media rater! After a
             consequent count of ratings, you could try the media selector that select a media item that you should like, or the media predictor,
-            that predicts whether you like the selected media item!
+            that predicts whether or not you might like the selected media item!
         </p>
         <p>
             <a class="btn btn-primary btn-lg" href="/user/register" role="button">Start and register &raquo;</a>

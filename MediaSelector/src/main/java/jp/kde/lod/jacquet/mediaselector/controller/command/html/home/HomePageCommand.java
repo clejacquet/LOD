@@ -27,15 +27,14 @@ public class HomePageCommand extends SessionVisibleCommand {
             User user = (User) session.getAttribute("user");
             if (user != null) {
                 MediaDao mediaDao = super.getHandler().getDaoProvider().getMediaDao();
-                List<Long> mediasSubscribed = mediaDao.getSubscriptions(user.getId(), 4);
+                List<Media> mediasSubscribed = mediaDao.getSubscriptions(user.getId(), 4);
                 List<MediaView> mediaViews = new ArrayList<>();
 
-                for (Long mediaSubscribed : mediasSubscribed) {
-                    Media media = mediaDao.getMedia(mediaSubscribed);
+                for (Media mediaSubscribed : mediasSubscribed) {
                     MediaView mediaView = new MediaView();
-                    mediaView.setId(media.getId());
-                    mediaView.setTitle(media.getName());
-                    mediaView.setDescription(media.getDescription());
+                    mediaView.setId(mediaSubscribed.getId());
+                    mediaView.setTitle(mediaSubscribed.getName());
+                    mediaView.setDescription(mediaSubscribed.getDescription());
                     mediaViews.add(mediaView);
                 }
 

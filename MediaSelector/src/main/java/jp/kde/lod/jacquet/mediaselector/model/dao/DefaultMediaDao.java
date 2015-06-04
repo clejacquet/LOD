@@ -200,7 +200,7 @@ public class DefaultMediaDao extends BaseServletSubject implements MediaDao {
     }
 
     @Override
-    public List<Long> getSubscriptions(long userId) {
+    public List<Media> getSubscriptions(long userId) {
         Model model = DefaultMediaDao.getMediaModel();
         DefaultMediaDao.InitGraph(model);
 
@@ -210,16 +210,23 @@ public class DefaultMediaDao extends BaseServletSubject implements MediaDao {
         Access access = new ModelAccess(model);
         Query query = subscribeSparqlQuery.asQuery();
         ResultSet resultSet = access.executeSelect(query);
-        List<Long> medias = new ArrayList<>();
+        List<Media> medias = new ArrayList<>();
 
         while (resultSet.hasNext()) {
-            medias.add(resultSet.next().getLiteral("media_id").getLong());
+            QuerySolution solution = resultSet.next();
+            Media media = new Media();
+            media.setId(solution.getLiteral("media_id").getLong());
+            media.setName(solution.getLiteral("media_name").getString());
+            media.setDescription(solution.getLiteral("media_description").getString());
+            media.setSparqlEndPoint(solution.getResource("media_end_point").getURI());
+            media.setAuthor(super.getHandler().getDaoProvider().getUserDao().getUser(solution.getLiteral("author_id").getLong()));
+            medias.add(media);
         }
         return medias;
     }
 
     @Override
-    public List<Long> getSubscriptions(long userId, int limit) {
+    public List<Media> getSubscriptions(long userId, int limit) {
         Model model = DefaultMediaDao.getMediaModel();
         DefaultMediaDao.InitGraph(model);
 
@@ -230,10 +237,70 @@ public class DefaultMediaDao extends BaseServletSubject implements MediaDao {
         Query query = subscribeSparqlQuery.asQuery();
         query.setLimit(limit);
         ResultSet resultSet = access.executeSelect(query);
-        List<Long> medias = new ArrayList<>();
+        List<Media> medias = new ArrayList<>();
 
         while (resultSet.hasNext()) {
-            medias.add(resultSet.next().getLiteral("media_id").getLong());
+            QuerySolution solution = resultSet.next();
+            Media media = new Media();
+            media.setId(solution.getLiteral("media_id").getLong());
+            media.setName(solution.getLiteral("media_name").getString());
+            media.setDescription(solution.getLiteral("media_description").getString());
+            media.setSparqlEndPoint(solution.getResource("media_end_point").getURI());
+            media.setAuthor(super.getHandler().getDaoProvider().getUserDao().getUser(solution.getLiteral("author_id").getLong()));
+            medias.add(media);
+        }
+        return medias;
+    }
+
+    @Override
+    public Map<Media, Integer> getSubscriptionsWithCount(long userId) {
+        Model model = DefaultMediaDao.getMediaModel();
+        DefaultMediaDao.InitGraph(model);
+
+        ParameterizedSparqlString subscribeSparqlQuery = super.getHandler().getQueryStorage().getSparqlString("getSubscriptions");
+        subscribeSparqlQuery.setParam("user_id", NodeFactory.createLiteral(Long.toString(userId), XSDDatatype.XSDlong));
+
+        Access access = new ModelAccess(model);
+        Query query = subscribeSparqlQuery.asQuery();
+        ResultSet resultSet = access.executeSelect(query);
+        Map<Media, Integer> medias = new HashMap<>();
+
+        while (resultSet.hasNext()) {
+            QuerySolution solution = resultSet.next();
+            Media media = new Media();
+            media.setId(solution.getLiteral("media_id").getLong());
+            media.setName(solution.getLiteral("media_name").getString());
+            media.setDescription(solution.getLiteral("media_description").getString());
+            media.setSparqlEndPoint(solution.getResource("media_end_point").getURI());
+            media.setAuthor(super.getHandler().getDaoProvider().getUserDao().getUser(solution.getLiteral("author_id").getLong()));
+            medias.put(media, solution.getLiteral("subscribed_count").getInt());
+        }
+        return medias;
+    }
+
+    @Override
+    public Map<Media, Integer> getSubscriptionsWithCount(long userId, int limit) {
+        Model model = DefaultMediaDao.getMediaModel();
+        DefaultMediaDao.InitGraph(model);
+
+        ParameterizedSparqlString subscribeSparqlQuery = super.getHandler().getQueryStorage().getSparqlString("getSubscriptions");
+        subscribeSparqlQuery.setParam("user_id", NodeFactory.createLiteral(Long.toString(userId), XSDDatatype.XSDlong));
+
+        Access access = new ModelAccess(model);
+        Query query = subscribeSparqlQuery.asQuery();
+        query.setLimit(limit);
+        ResultSet resultSet = access.executeSelect(query);
+        Map<Media, Integer> medias = new HashMap<>();
+
+        while (resultSet.hasNext()) {
+            QuerySolution solution = resultSet.next();
+            Media media = new Media();
+            media.setId(solution.getLiteral("media_id").getLong());
+            media.setName(solution.getLiteral("media_name").getString());
+            media.setDescription(solution.getLiteral("media_description").getString());
+            media.setSparqlEndPoint(solution.getResource("media_end_point").getURI());
+            media.setAuthor(super.getHandler().getDaoProvider().getUserDao().getUser(solution.getLiteral("author_id").getLong()));
+            medias.put(media, solution.getLiteral("subscribed_count").getInt());
         }
         return medias;
     }
@@ -395,6 +462,32 @@ public class DefaultMediaDao extends BaseServletSubject implements MediaDao {
     }
 
     @Override
+    public Map<Media, Integer> getOwnedMedias(long userId) {
+        Model model = DefaultMediaDao.getMediaModel();
+        DefaultMediaDao.InitGraph(model);
+
+        ParameterizedSparqlString subscribeSparqlQuery = super.getHandler().getQueryStorage().getSparqlString("getOwnedMedias");
+        subscribeSparqlQuery.setParam("user_id", NodeFactory.createLiteral(Long.toString(userId), XSDDatatype.XSDlong));
+
+        Access access = new ModelAccess(model);
+        Query query = subscribeSparqlQuery.asQuery();
+        ResultSet resultSet = access.executeSelect(query);
+        Map<Media, Integer> medias = new HashMap<>();
+
+        while (resultSet.hasNext()) {
+            QuerySolution solution = resultSet.next();
+            Media media = new Media();
+            media.setId(solution.getLiteral("media_id").getLong());
+            media.setName(solution.getLiteral("media_name").getString());
+            media.setDescription(solution.getLiteral("media_description").getString());
+            media.setSparqlEndPoint(solution.getResource("media_end_point").getURI());
+            media.setAuthor(super.getHandler().getDaoProvider().getUserDao().getUser(userId));
+            medias.put(media, solution.getLiteral("subscribed_count").getInt());
+        }
+        return medias;
+    }
+
+    @Override
     public void rateMainResource(User user, long mediaId, String mainResourceUri) {
         Model model = DefaultMediaDao.getMediaModel();
         DefaultMediaDao.InitGraph(model);
@@ -479,6 +572,7 @@ public class DefaultMediaDao extends BaseServletSubject implements MediaDao {
 
         ParameterizedSparqlString getRatedResources = super.getHandler().getQueryStorage().getSparqlString("getUnratedResources");
         getRatedResources.setParam("user_id", NodeFactory.createLiteral(Long.toString(userId), XSDDatatype.XSDlong));
+        getRatedResources.setParam("media_id", NodeFactory.createLiteral(Long.toString(mediaId), XSDDatatype.XSDlong));
 
         ResultSet resultSet = access.executeSelect(getRatedResources.asQuery());
         Collection<RDFNode> candidates = new ArrayList<>();

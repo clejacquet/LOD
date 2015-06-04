@@ -14,6 +14,7 @@ public class UserRegisterPageCommand extends SessionVisibleCommand {
         WebView view = ViewFactory.buildBootstrapView("Media Selector - Register", "user/register.ftl");
         view.addCss("/css/user/register/register.css");
         view.addJs("/js/utils/url.js");
+        view.addJs("/js/user/redirect-login.js");
         view.addJs("/js/user/sign-redirection.js");
         return view;
     }

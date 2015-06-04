@@ -12,6 +12,7 @@ import jp.kde.lod.jacquet.pageprocessing.WebView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Clement on 17/05/2015.
@@ -21,18 +22,19 @@ public class MediaSearchPageCommand extends AuthenticatedCommand {
     public View process() {
         MediaDao mediaDao = super.getHandler().getDaoProvider().getMediaDao();
         User user = (User) super.getHandler().getRequest().getSession(false).getAttribute("user");
-        List<Long> mediasSubscribed = mediaDao.getSubscriptions(user.getId());
+        Map<Media, Integer> mediasSubscribed = mediaDao.getSubscriptionsWithCount(user.getId());
         List<MediaView> mediaViews = new ArrayList<>();
 
-        for (Long mediaSubscribed : mediasSubscribed) {
-            Media media = mediaDao.getMedia(mediaSubscribed);
+        for (Map.Entry<Media, Integer> mediaSubscribedEntry : mediasSubscribed.entrySet()) {
+            Media mediaSubscribed = mediaSubscribedEntry.getKey();
+
             MediaView mediaView = new MediaView();
-            mediaView.setId(media.getId());
-            mediaView.setTitle(media.getName());
-            mediaView.setDescription(media.getDescription());
-            mediaView.setSubscribed(mediaDao.isSubscribed(user.getId(), mediaSubscribed));
-            mediaView.setSubscribedCount(mediaDao.getUserSubscribedCount(mediaSubscribed));
-            mediaView.setAuthor(media.getAuthor().getLogin());
+            mediaView.setId(mediaSubscribed.getId());
+            mediaView.setTitle(mediaSubscribed.getName());
+            mediaView.setDescription(mediaSubscribed.getDescription());
+            mediaView.setSubscribed(true);
+            mediaView.setSubscribedCount(mediaSubscribedEntry.getValue());
+            mediaView.setAuthor(mediaSubscribed.getAuthor().getLogin());
             mediaViews.add(mediaView);
         }
 

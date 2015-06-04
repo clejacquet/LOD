@@ -35,6 +35,7 @@ public class MediaPageCommand extends AuthenticatedCommand {
             mediaView.setSubscribed(mediaDao.isSubscribed(user.getId(), mediaId));
             mediaView.setSubscribedCount(mediaDao.getUserSubscribedCount(mediaId));
             mediaView.setAuthor(media.getAuthor().getLogin());
+            mediaView.setAuthorId(media.getAuthor().getId());
 
             boolean admin = user.getId() == media.getAuthor().getId();
 
